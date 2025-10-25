@@ -10,7 +10,7 @@ class AgentCreate(BaseModel):
     email: str
     phone: str
     company: str
-    experience: int
+    experience: str
     profile_photo_url: str
     city: str
     happy_customers: int
