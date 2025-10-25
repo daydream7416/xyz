@@ -1,0 +1,14 @@
+{ 
+   "rewrites": [ 
+     { 
+       "source": "/:path*", 
+       "has": [ 
+         { 
+           "type": "host", 
+           "value": "(?!www\\.)(?<subdomain>.+)\\.metraap\\.com" 
+         } 
+       ], 
+       "destination": "/new-landing-v2.html" 
+     } 
+   ] 
+ }
