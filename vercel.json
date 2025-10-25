@@ -1,11 +1,4 @@
 {
-  "builds": [
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
-    }
-  ],
   "rewrites": [
     {
       "source": "/:path*",
@@ -25,7 +18,7 @@
           "value": "metraap.com"
         }
       ],
-      "destination": "/new-landing-v2.html"
+      "destination": "/frontend/new-landing-v2.html"
     }
   ]
 }
