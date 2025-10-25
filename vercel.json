@@ -5,6 +5,16 @@
       "has": [
         {
           "type": "host",
+          "value": "^(www\\.)?metraap\\.com$"
+        }
+      ],
+      "destination": "/frontend/new-landing-v2.html"
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
           "value": ".*\\.metraap\\.com"
         }
       ],
@@ -18,7 +28,7 @@
           "value": "metraap.com"
         }
       ],
-      "destination": "/frontend/new-landing-v2.html"
+      "destination": "/frontend/index.html"
     }
   ]
 }
