@@ -5,7 +5,7 @@ import os
 
 # DATABASE_URL = os.environ.get("DATABASE_URL")
 # This is a placeholder, we will get the real URL from Railway later
-DATABASE_URL = "postgresql://user:password@host:port/database"
+DATABASE_URL = "postgresql://postgres:dljtLYrptywWtNIahmKaGWFmqHclMQjO@postgres.railway.internal:5432/railway"
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
