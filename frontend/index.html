@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Kayıt Formu</title>
+    
+    <!-- Meta Pixel Base Code - Start -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        
+        // Initialize with placeholder Pixel ID
+        fbq('init', 'PIXEL_ID_HERE');
+        fbq('track', 'PageView');
+        console.log("✅ Meta Pixel: PageView fired!");
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=PIXEL_ID_HERE&ev=PageView&noscript=1"/>
+    </noscript>
+    <!-- Meta Pixel Base Code - End -->
+    
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            background-color: #fafafa;
+        }
+        
+        .form-group input::placeholder,
+        .form-group select::placeholder {
+            color: #999;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+        
+        .form-group input:focus::placeholder,
+        .form-group select:focus::placeholder {
+            color: #bbb;
+            opacity: 0.6;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .promo-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .promo-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .promo-link a:hover {
+            text-decoration: underline;
+        }
+        
+        /* KVKK metni için responsive stiller */
+        @media (max-width: 768px) {
+            .kvkk-notice {
+                font-size: 11px !important;
+                padding: 12px !important;
+                margin: 20px -15px -15px -15px !important;
+                border-radius: 0 !important;
+                border-left: none !important;
+                border-right: none !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .kvkk-notice {
+                font-size: 10px !important;
+                line-height: 1.4 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏢 Ücretsiz Emlakçı Web Sayfası</h1>
+            <p>Aşağıdaki bilgileri doldurun, profesyonel kişisel web sayfanızı hemen oluşturalım!</p>
+            
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 15px; margin: 20px 0; text-align: left;">
+                <h3 style="margin-bottom: 15px;">🎁 Neler Kazanacaksınız?</h3>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="margin-bottom: 8px;">✅ Kişisel emlakçı web sayfası</li>
+                    <li style="margin-bottom: 8px;">✅ Müşteri iletişim formu</li>
+                    <li style="margin-bottom: 8px;">✅ Profesyonel görünüm</li>
+                    <li style="margin-bottom: 8px;">✅ Mobil uyumlu tasarım</li>
+                    <li style="margin-bottom: 8px;">✅ Sosyal medya entegrasyonu</li>
+                </ul>
+            </div>
+        </div>
+        
+        <form id="agentForm">
+            <div class="form-group">
+                <label for="name">👤 Ad Soyad *</label>
+                <input type="text" id="name" name="name" required placeholder="Bu alana adınızı ve soyadınızı girin" value="">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">📧 E-posta *</label>
+                <input type="email" id="email" name="email" required placeholder="örnek@email.com şeklinde e-posta adresinizi girin" value="">
+            </div>
+            
+            <div class="form-group">
+                  <label for="phone">📱 Telefon *</label>
+                  <input type="tel" id="phone" name="phone" required placeholder="Telefon numaranızı 05XX XXX XXXX formatında girin" value="">
+                  <small style="color: #888; font-size: 11px; display: block; margin-top: 4px;">💡 WhatsApp yönlendirmesi için: 05XX XXX XXXX formatında girin (otomatik +90 eklenecek)</small>
+              </div>
+            
+            <div class="form-group">
+                <label for="company">🏢 Şirket</label>
+                <input type="text" id="company" name="company" placeholder="Şirketinizin veya ajansınızın adını girin" value="">
+            </div>
+            
+            <div class="form-group">
+                <label for="experience">⭐ Tecrübe Yılı</label>
+                <select id="experience" name="experience">
+                    <option value="">Gayrimenkul sektöründeki tecrübe yılınızı seçin</option>
+                    <option value="0-1">0-1 Yıl (Yeni başlayan)</option>
+                    <option value="2-3">2-3 Yıl (Acemi)</option>
+                    <option value="4-5">4-5 Yıl (Orta seviye)</option>
+                    <option value="6-10">6-10 Yıl (Deneyimli)</option>
+                    <option value="11-15">11-15 Yıl (Uzman)</option>
+                    <option value="16+">16+ Yıl (Kıdemli uzman)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="profilePhoto">📷 Profil Fotoğrafı</label>
+                <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*" style="padding: 10px; border: 2px dashed #ddd; border-radius: 10px; background: #f9f9f9;">
+                <small style="color: #666; font-size: 12px; display: block; margin-top: 5px;">JPG, PNG veya GIF formatında maksimum 5MB</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="city">🌍 Şehir</label>
+                <input type="text" id="city" name="city" placeholder="Bulunduğunuz şehri girin (örn: İstanbul, Ankara)" value="">
+            </div>
+            
+            <div class="form-group">
+                <label for="happyCustomers">😊 Mutlu Müşteri Sayısı</label>
+                <input type="number" id="happyCustomers" name="happyCustomers" placeholder="Mutlu müşteri sayınızı girin (örn: 500)" min="0" value="">
+                <small style="color: #666; font-size: 12px; display: block; margin-top: 5px;">Web sitenizde görünecek mutlu müşteri sayısı (sonuna + eklenir)</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="successfulSales">🏆 Başarılı Satış Sayısı</label>
+                <input type="number" id="successfulSales" name="successfulSales" placeholder="Başarılı satış sayınızı girin (örn: 1000)" min="0" value="">
+                <small style="color: #666; font-size: 12px; display: block; margin-top: 5px;">Web sitenizde görünecek başarılı satış sayısı (sonuna + eklenir)</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="instagramUrl">📸 Instagram URL</label>
+                <input type="url" id="instagramUrl" name="instagramUrl" placeholder="https://www.instagram.com/cuneytguzel/ şeklinde tam URL girin" value="">
+                <small style="color: #666; font-size: 12px; display: block; margin-top: 5px;">Tam Instagram URL'si (https://www.instagram.com/kullaniciadi/)</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="facebookUrl">📘 Facebook URL</label>
+                <input type="url" id="facebookUrl" name="facebookUrl" placeholder="https://facebook.com/kullaniciadi şeklinde tam URL girin" value="">
+                <small style="color: #666; font-size: 12px; display: block; margin-top: 5px;">Tam Facebook URL'si (https://facebook.com/kullaniciadi)</small>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submitBtn">
+                🚀 Kayıt Ol
+            </button>
+        </form>
+        
+        <div class="success-message" id="successMessage">
+            ✅ Kayıt başarılı! Promosyon sitesinde görüneceksiniz.
+        </div>
+        
+        <div class="error-message" id="errorMessage">
+            ❌ Kayıt sırasında hata oluştu. Lütfen tekrar deneyin.
+        </div>
+        
+        <div class="promo-link">
+            <a href="https://profound-flexibility-production-0b7c.up.railway.app/api/landing/demo?agent_name=Örnek%20Danışman&company_name=Emlak%20Şirketi&agent_phone=0555%20123%2045%2067" target="_blank">🌟 Örnek Emlak Danışmanı Sitesini Görüntüle</a>
+        </div>
+        
+        <!-- KVKK ve Meta Pixel Bilgilendirme -->
+        <div class="kvkk-notice" style="font-size: 12px; color: #777; text-align: center; margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 8px; border: 1px solid #e9ecef; clear: both;"> 
+            Bu formu göndererek, <b>reklam performansının ölçümü</b> amacıyla çerez ve benzeri 
+            teknolojilerin (ör. Meta Pixel) kullanılmasını kabul etmiş olursunuz. 
+            Kişisel verileriniz <a href="/kvkk.html" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 600;">KVKK Aydınlatma Metni</a> 
+            kapsamında işlenmektedir. 
+        </div>
+
+    </div>
+
+    <!-- Load API configuration -->
+    <script src="config.js"></script>
+    <script>
+        // Telefon numarası formatlama
+        function formatPhoneNumber(value) {
+            // Sadece rakamları al
+            const digits = value.replace(/\D/g, '');
+            
+            // Eğer ilk rakam 0 değilse ve bir şey yazılmışsa, 0 ekle
+            if (digits.length > 0 && !digits.startsWith('0')) {
+                return '0' + digits;
+            }
+            
+            // Türk telefon formatı: 05XX XXX XXXX (11 haneli)
+            if (digits.length >= 11) {
+                return digits.replace(/(\d{4})(\d{3})(\d{2})(\d{2})/, '$1 $2 $3 $4');
+            } else if (digits.length >= 8) {
+                return digits.replace(/(\d{4})(\d{3})(\d{1})/, '$1 $2 $3');
+            } else if (digits.length >= 4) {
+                return digits.replace(/(\d{4})/, '$1');
+            }
+            return digits;
+        }
+        
+        // Telefon numarası validasyonu
+        function validatePhoneNumber(phone) {
+            const digits = phone.replace(/\D/g, '');
+            // Türk telefon numaraları: 11 haneli (0 ile başlayan) veya 10 haneli (0 olmadan)
+            // Ama her ikisi de 5XX ile başlamalı
+            return (digits.length === 11 && digits.startsWith('05')) || 
+                   (digits.length === 10 && digits.startsWith('5'));
+        }
+        
+        // URL validasyonu ve düzenleme
+        function validateAndFixSocialUrl(url, platform) {
+            if (!url || url.trim() === '') {
+                return '';
+            }
+            
+            url = url.trim();
+            
+            // Eğer zaten tam URL ise, doğrula ve döndür
+            if (url.startsWith('http://') || url.startsWith('https://')) {
+                // Instagram URL kontrolü
+                if (platform === 'instagram' && (url.includes('instagram.com') || url.includes('instagr.am'))) {
+                    return url;
+                }
+                // Facebook URL kontrolü
+                if (platform === 'facebook' && url.includes('facebook.com')) {
+                    return url;
+                }
+            }
+            
+            // Sadece kullanıcı adı girilmişse, tam URL oluştur
+            const username = url.replace(/^[@\/]+/, '').replace(/\/+$/, '');
+            
+            if (platform === 'instagram') {
+                return `https://www.instagram.com/${username}/`;
+            } else if (platform === 'facebook') {
+                return `https://facebook.com/${username}`;
+            }
+            
+            return url;
+        }
+        
+        // Sayfa yüklendiğinde telefon alanını formatla
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneInput = document.getElementById('phone');
+            const phoneHelp = document.createElement('div');
+            phoneHelp.id = 'phoneHelp';
+            phoneHelp.style.cssText = 'color: #666; font-size: 12px; margin-top: 5px;';
+            phoneInput.parentNode.appendChild(phoneHelp);
+            
+            // Telefon numarası girişini dinle
+            phoneInput.addEventListener('input', function(e) {
+                const formatted = formatPhoneNumber(e.target.value);
+                e.target.value = formatted;
+                
+                // Validasyon mesajı göster - formatlanmış değerden rakamları çıkar
+                const digits = formatted.replace(/\D/g, '');
+                
+                // Özel durum: Sadece 5 ile başlayan 2 haneli giriş
+                if (digits === '05' && formatted.length === 2) {
+                    phoneHelp.textContent = '💡 Devam etmek için 8 rakam daha girin';
+                    phoneHelp.style.color = '#666';
+                }
+                else if (digits.length > 0 && !digits.startsWith('05') && !digits.startsWith('5')) {
+                    phoneHelp.textContent = '⚠️ Türk telefon numaraları 05 veya 5 ile başlar';
+                    phoneHelp.style.color = '#ff6b6b';
+                } else if (digits.length === 10 || digits.length === 11) {
+                    phoneHelp.textContent = '✅ Telefon numarası doğru formatta';
+                    phoneHelp.style.color = '#51cf66';
+                } else if (digits.length > 11) {
+                    phoneHelp.textContent = '⚠️ 11 haneden fazla rakam girdiniz';
+                    phoneHelp.style.color = '#ff6b6b';
+                } else if (digits.length > 2) {
+                    const targetLength = digits.startsWith('0') ? 11 : 10;
+                    phoneHelp.textContent = `📱 ${targetLength - digits.length} rakam daha girin`;
+                    phoneHelp.style.color = '#666';
+                } else if (digits.length > 0) {
+                    phoneHelp.textContent = '💡 Türk telefon numarası: 05 ile başlar';
+                    phoneHelp.style.color = '#888';
+                } else {
+                    phoneHelp.textContent = '💡 WhatsApp yönlendirmesi için: 05XX XXX XXXX';
+                    phoneHelp.style.color = '#888';
+                }
+            });
+            
+            // Başlangıç mesajı
+            phoneHelp.textContent = '💡 WhatsApp yönlendirmesi için: 05XX XXX XXXX veya 5XX XXX XXXX formatında girin (otomatik +90 eklenecek)';
+            phoneHelp.style.color = '#888';
+        });
+        
+        // Debug info function
+        function updateDebugInfo(message) {
+            console.log('DEBUG:', message);
+            // You can also add visual debug info if needed
+            // const debugDiv = document.getElementById('debugInfo');
+            // if (debugDiv) {
+            //     debugDiv.innerHTML += '<div>' + message + '</div>';
+            // }
+        }
+
+        document.getElementById('agentForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Hide previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Telefon numarası validasyonu
+            const phoneInput = document.getElementById('phone');
+            const phoneDigits = phoneInput.value.replace(/\D/g, '');
+            
+            if (!validatePhoneNumber(phoneInput.value)) {
+                errorMessage.style.display = 'block';
+                errorMessage.innerHTML = '❌ Lütfen geçerli bir Türk telefon numarası girin (05XX XXX XXXX formatında)';
+                phoneInput.focus();
+                return;
+            }
+            
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Otomasyon çalışıyor lütfen bekleyin...';
+            
+            // Create FormData object for file upload support
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('phone', document.getElementById('phone').value);
+            formData.append('company', document.getElementById('company').value);
+            formData.append('experience', document.getElementById('experience').value);
+            formData.append('city', document.getElementById('city').value);
+            formData.append('happyCustomers', document.getElementById('happyCustomers').value || '0');
+            formData.append('successfulSales', document.getElementById('successfulSales').value || '0');
+            formData.append('instagramUrl', document.getElementById('instagramUrl').value || '');
+            formData.append('facebookUrl', document.getElementById('facebookUrl').value || '');
+            
+            // Append Instagram and Facebook URLs to URL parameters
+            const instagramUrlRaw = document.getElementById('instagramUrl').value || '';
+            const facebookUrlRaw = document.getElementById('facebookUrl').value || '';
+            
+            // URL'leri doğrula ve düzenle
+            const instagramUrl = validateAndFixSocialUrl(instagramUrlRaw, 'instagram');
+            const facebookUrl = validateAndFixSocialUrl(facebookUrlRaw, 'facebook');
+            
+            // FormData'ya düzenlenmiş URL'leri ekle
+            formData.set('instagramUrl', instagramUrl);
+            formData.set('facebookUrl', facebookUrl);
+            
+            // Specialties alanı - şimdilik boş gönder
+            formData.append('specialties', '');
+            
+            // Handle profile photo if uploaded
+            const profilePhotoInput = document.getElementById('profilePhoto');
+            if (profilePhotoInput.files.length > 0) {
+                formData.append('profilePhoto', profilePhotoInput.files[0]);
+            }
+            
+            try {
+                // Get the appropriate API URL based on environment
+                const apiUrl = window.API_CONFIG.getAgentRegistrationUrl();
+                console.log('Using API URL:', apiUrl);
+                console.log('Form data being sent:', Object.fromEntries(formData));
+                
+                updateDebugInfo(`🚀 Form gönderiliyor: ${apiUrl}`);
+                updateDebugInfo(`📝 Form verileri: ${JSON.stringify(Object.fromEntries(formData), null, 2)}`);
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    body: formData // FormData automatically sets the correct Content-Type
+                });
+                
+                console.log('Response status:', response.status);
+                console.log('Response ok:', response.ok);
+                
+                updateDebugInfo(`📡 Response status: ${response.status}`);
+                updateDebugInfo(`✅ Response ok: ${response.ok}`);
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    updateDebugInfo(`🎉 Success: ${JSON.stringify(result, null, 2)}`);
+                    
+                    <!-- Meta Pixel Lead Event - Start -->
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'Lead');
+                        console.log('Meta Pixel Lead event triggered');
+                        console.log('🔥 Meta Pixel: Lead event triggered!');
+                    }
+                    <!-- Meta Pixel Lead Event - End -->
+                    
+                    // Use clean landing URL from backend response
+                    const cleanLandingUrl = result.landing_url;
+                    
+                    if (!cleanLandingUrl) {
+                        throw new Error("Backend response did not include 'landing_url'");
+                    }
+                    
+                    console.log('Redirecting to clean landing URL from backend:', cleanLandingUrl);
+                    updateDebugInfo(`🔄 Clean Landing URL: ${cleanLandingUrl}`);
+                    
+                    successMessage.style.display = 'block';
+                    successMessage.innerHTML = `✅ Kayıt başarılı! Kişisel siteniz hazırlanıyor... <a href="${cleanLandingUrl}" target="_blank" style="color: inherit; font-weight: bold;">Buradan erişebilirsiniz</a>.`;
+                    
+                    document.getElementById('agentForm').reset();
+                    
+                    // Redirect to clean landing URL from backend after 4 seconds
+                    setTimeout(() => {
+                        window.location.href = cleanLandingUrl;
+                    }, 4000);
+                } else {
+                    const errorText = await response.text();
+                    console.error('Response error:', response.status, errorText);
+                    updateDebugInfo(`❌ Response error: ${response.status} - ${errorText}`);
+                    throw new Error(`Network response was not ok: ${response.status} - ${errorText}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                updateDebugInfo(`💥 Catch error: ${error.message}`);
+                errorMessage.style.display = 'block';
+                errorMessage.innerHTML = `❌ Kayıt sırasında hata oluştu: ${error.message}`;
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.textContent = '🚀 Kayıt Ol';
+            }
+        });
+    </script>
+</body>
+</html>

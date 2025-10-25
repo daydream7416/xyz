@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Kişisel Emlak Danışmanınız</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+    <meta content="" name="author" />
+    <meta content="" property="og:title" />
+    <meta content="" property="og:description" />
+    <meta content="website" property="og:type" />
+    <meta content="https://www.sizinemlaksiteniz.com/danisman-profil" property="og:url" />
+    <meta content="" property="og:image" />
+    <meta content="" property="og:image:alt" />
+    <meta content="" property="og:site_name" />
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Work+Sans:wght@400;500;700;900" as="style" onload="this.rel='stylesheet'" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#1193d4", "background-light": "#f6f7f8", "background-dark": "#101c22", "foreground-light": "#111618", "foreground-dark": "#f0f3f4", "card-light": "#ffffff", "card-dark": "#18262d", "subtle-light": "#617c89", "subtle-dark": "#a0b1b9", "border-light": "#dbe2e6", "border-dark": "#314551", "input-light": "#f0f3f4", "input-dark": "#18262d" },
+                    fontFamily: { "display": ["Work Sans"] },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        };
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 40px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 4px 4px 12px rgba(0,0,0,0.3);
+        }
+
+        @keyframes pulse-whatsapp {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            bottom: 10px;
+            right: 100%;
+            margin-right: 15px;
+            background-color: #333;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            white-space: nowrap;
+            font-size: 14px;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 101;
+        }
+
+        .whatsapp-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            margin-top: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent transparent #333;
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                bottom: 20px;
+                right: 15px;
+                width: 50px;
+                height: 50px;
+            }
+            .whatsapp-tooltip {
+                display: none; /* Hide tooltip on mobile */
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <header class="flex items-center justify-between whitespace-nowrap border-b border-border-light dark:border-border-dark px-4 sm:px-6 md:px-10 py-3">
+                <div class="flex items-center gap-4 text-foreground-light dark:text-foreground-dark">
+                    <div class="size-6 text-primary">
+                        <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <h2 id="agent_name_header" class="text-lg font-bold leading-tight tracking-[-0.015em]"></h2>
+                </div>
+                <div class="hidden lg:flex flex-1 justify-center items-center gap-8">
+                    <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" href="#services">Hizmetlerim</a>
+                    <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" href="#about">Hakkımda</a>
+                    <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" href="#contact">İletişim</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a id="header-whatsapp-link" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]" href="#">
+                        <span class="truncate">İletişime Geç</span>
+                    </a>
+                    <div id="profile_photo_header" class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" loading="lazy"></div>
+                </div>
+            </header>
+        <main class="flex-1">
+            <div class="relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1920&auto=format&fit=crop');">
+                <div class="absolute inset-0 bg-black/50"></div>
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+                    <div class="text-center">
+                            <div class="flex justify-center mb-6">
+                                <img id="profile_photo_hero" class="rounded-full h-32 w-32 object-cover border-4 border-white shadow-lg" src="" alt="Profil Fotoğrafı">
+                            </div>
+                            <!-- Dijital Kartvizit Paylaş Butonu -->
+                            <div class="flex justify-center mb-4">
+                                <button id="shareCardBtn" class="flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-lg border border-white/30 transition-all duration-300 hover:scale-105 shadow-lg">
+                                    <span class="material-symbols-outlined">share</span>
+                                    <span class="font-medium">Kartvizitimi Paylaş</span>
+                                </button>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                            <div class="text-primary text-lg font-semibold mb-2">
+                                <span id="agent_title_hero">GAYRİMENKUL UZMANI</span>
+                            </div>
+                            <h1 class="text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]"><span id="agent_city_hero1"></span> Bölgesindeki Emlak Hedeflerinize Birlikte Ulaşalım</h1>
+                            <h2 class="text-white text-base md:text-lg font-normal leading-normal max-w-2xl mx-auto"><span id="agent_city_hero2"></span> bölgesindeki yolculuğunuzda size özel çözümler ve sarsılmaz bir bağlılık sunan güvenilir ortağınız, <span id="agent_name_hero"></span>.</h2>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+                            <a class="flex min-w-[84px] w-full sm:w-auto max-w-lg cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em]" href="#contact">
+                                <span class="truncate">Danışmanlık Alın</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <section class="px-4 py-8" id="stats">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-lg border border-border-light dark:border-border-dark gap-2">
+                                <span id="agent_experience" class="text-3xl font-bold text-primary"></span>
+                                <span class="text-sm text-subtle-light dark:text-subtle-dark">Yıllık Tecrübe</span>
+                            </div>
+                            <div class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-lg border border-border-light dark:border-border-dark gap-2">
+                                <span id="agent_clients" class="text-3xl font-bold text-primary"></span>
+                                <span class="text-sm text-subtle-light dark:text-subtle-dark">Mutlu Müşteri</span>
+                            </div>
+                            <div class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-lg border border-border-light dark:border-border-dark gap-2">
+                                <span id="agent_sales" class="text-3xl font-bold text-primary"></span>
+                                <span class="text-sm text-subtle-light dark:text-subtle-dark">Başarılı Satış</span>
+                            </div>
+                            <div class="flex flex-col items-center justify-center p-6 bg-card-light dark:bg-card-dark rounded-lg border border-border-light dark:border-border-dark gap-2">
+                                <span id="agent_satisfaction" class="text-3xl font-bold text-primary"></span>
+                                <span class="text-sm text-subtle-light dark:text-subtle-dark">Müşteri Memnuniyeti</span>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="services">
+                        <h2 class="text-foreground-light dark:text-foreground-dark text-2xl font-bold leading-tight tracking-[-0.015em] px-4 pb-4">Uzmanlık Alanlarım</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 p-4">
+                            <div class="flex flex-col items-center text-center gap-4 rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+                                <div class="text-primary bg-primary/10 dark:bg-primary/20 rounded-full p-3"><span class="material-symbols-outlined text-4xl">real_estate_agent</span></div>
+                                <h3 class="text-foreground-light dark:text-foreground-dark text-lg font-bold leading-tight">Alıcı & Satıcı Danışmanlığı</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">İster ilk evinizi alıyor, ister mülkünüzü satıyor olun, tüm süreç boyunca size özel rehberlik ve stratejik destek sunuyorum.</p>
+                            </div>
+                            <div class="flex flex-col items-center text-center gap-4 rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+                                <div class="text-primary bg-primary/10 dark:bg-primary/20 rounded-full p-3"><span class="material-symbols-outlined text-4xl">gavel</span></div>
+                                <h3 class="text-foreground-light dark:text-foreground-dark text-lg font-bold leading-tight">Müzakere ve Değerleme</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Sizin için en iyi anlaşmayı sağlamak adına güçlü müzakere becerilerimi ve piyasa bilgimi kullanarak mülkünüzün doğru değerini belirliyorum.</p>
+                            </div>
+                            <div class="flex flex-col items-center text-center gap-4 rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+                                <div class="text-primary bg-primary/10 dark:bg-primary/20 rounded-full p-3"><span class="material-symbols-outlined text-4xl">digital_wellbeing</span></div>
+                                <h3 class="text-foreground-light dark:text-foreground-dark text-lg font-bold leading-tight">Dijital Görünürlük</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Mülkünüzü doğru alıcıların önüne çıkarmak için hedefli dijital reklamlar, sosyal medya kampanyaları ve profesyonel listeleme stratejileri geliştiriyorum.</p>
+                            </div>
+                            <div class="flex flex-col items-center text-center gap-4 rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
+                                <div class="text-primary bg-primary/10 dark:bg-primary/20 rounded-full p-3"><span class="material-symbols-outlined text-4xl">inventory</span></div>
+                                <h3 class="text-foreground-light dark:text-foreground-dark text-lg font-bold leading-tight">Portföy Pazarlaması</h3>
+                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Yatırımcılar ve birden fazla mülkü olan müşteriler için özel portföy pazarlama planları oluşturarak varlıklarınızın değerini en üst düzeye çıkarıyorum.</p>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="about">
+                        <h2 class="text-foreground-light dark:text-foreground-dark text-2xl font-bold leading-tight tracking-[-0.015em] px-4 pb-4">Benim Hikayem</h2>
+                        <div class="p-4">
+                            <div class="bg-card-light dark:bg-card-dark p-8 rounded-lg border border-border-light dark:border-border-dark">
+                                <p class="text-subtle-light dark:text-subtle-dark text-base font-normal leading-normal">
+                                    Gayrimenkul sektöründeki uzun yıllara dayanan tecrübemle, alım-satım ve kiralama süreçlerinizde size profesyonel destek sunmak için buradayım. Müşteri memnuniyetini her zaman ön planda tutarak, hayallerinizdeki mülke en doğru ve hızlı şekilde ulaşmanız için çalışıyorum. Güvenilir, şeffaf ve sonuç odaklı bir hizmet anlayışıyla, yatırımınıza değer katacak en iyi fırsatları birlikte değerlendirelim.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="testimonials" x-data="{
+                        activeSlide: 0,
+                        testimonials: [
+                            { name: 'Ayşe & Ali Yılmaz', title: 'Ev Sahipleri', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=256&auto=format&fit=crop', quote: 'Onunla çalışmak bir ayrıcalıktı. Sadece bir danışman değil, aynı zamanda bu heyecanlı süreçte bir dost gibiydi. Onun sayesinde hayalimizdeki evi hiç beklemediğimiz kadar kolay bulduk.' },
+                            { name: 'Mehmet Kaya', title: 'Yatırımcı', image: 'https://images.unsplash.com/photo-1566753323558-f4e0952af115?q=80&w=256&auto=format&fit=crop', quote: 'Piyasa bilgisi ve profesyonelliği sayesinde yatırım portföyüm için en doğru kararları vermemi sağladı. Kendisiyle çalışmaya devam edeceğimden eminim.'},
+                            { name: 'Zeynep Öztürk', title: 'İlk Evini Alan', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop', quote: 'İlk evimi alırken çok endişeliydim ama süreci o kadar anlaşılır ve şeffaf hale getirdi ki, kendimi tamamen güvende hissettim. Minnettarım!' }
+                        ],
+                        next() { this.activeSlide = (this.activeSlide + 1) % this.testimonials.length; },
+                        prev() { this.activeSlide = (this.activeSlide - 1 + this.testimonials.length) % this.testimonials.length; }
+                    }">
+                        <h2 class="text-foreground-light dark:text-foreground-dark text-2xl font-bold leading-tight tracking-[-0.015em] px-4 pb-4">Müşterilerim Ne Diyor?</h2>
+                        <div class="relative overflow-hidden p-4">
+                            <div :style="{ transform: `translateX(-${activeSlide * 100}%)` }" class="flex transition-transform duration-500 ease-in-out">
+                                <template x-for="(testimonial, index) in testimonials" :key="index">
+                                    <div class="w-full flex-shrink-0 px-2">
+                                        <div class="flex flex-col gap-4 bg-card-light dark:bg-card-dark p-6 rounded-lg border border-border-light dark:border-border-dark h-full">
+                                            <div class="flex items-center gap-3">
+                                                <img :src="testimonial.image" class="aspect-square rounded-full size-12 object-cover" loading="lazy" />
+                                                <div class="flex-1">
+                                                    <p class="text-foreground-light dark:text-foreground-dark text-base font-bold leading-normal" x-text="testimonial.name"></p>
+                                                    <p class="text-subtle-light dark:text-subtle-dark text-sm font-normal leading-normal" x-text="testimonial.title"></p>
+                                                </div>
+                                            </div>
+                                            <div class="flex gap-0.5 text-primary">
+                                                <span class="material-symbols-outlined text-xl">star</span><span class="material-symbols-outlined text-xl">star</span><span class="material-symbols-outlined text-xl">star</span><span class="material-symbols-outlined text-xl">star</span><span class="material-symbols-outlined text-xl">star</span>
+                                            </div>
+                                            <p class="text-foreground-light dark:text-foreground-dark text-sm font-normal leading-normal" x-text="`“${testimonial.quote}”`"></p>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                            <button @click="prev" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-card-light/50 dark:bg-card-dark/50 hover:bg-card-light/80 dark:hover:bg-card-dark/80 rounded-full p-2 ml-4 focus:outline-none"><span class="material-symbols-outlined text-foreground-light dark:text-foreground-dark">chevron_left</span></button>
+                            <button @click="next" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-card-light/50 dark:bg-card-dark/50 hover:bg-card-light/80 dark:hover:bg-card-dark/80 rounded-full p-2 mr-4 focus:outline-none"><span class="material-symbols-outlined text-foreground-light dark:text-foreground-dark">chevron_right</span></button>
+                        </div>
+                        <div class="flex justify-center mt-4 gap-2">
+                            <template x-for="(testimonial, index) in testimonials" :key="index">
+                                <button @click="activeSlide = index" class="w-3 h-3 rounded-full" :class="{'bg-primary': activeSlide === index, 'bg-subtle-light dark:bg-subtle-dark': activeSlide !== index}"></button>
+                            </template>
+                        </div>
+                    </section>
+                    <section id="contact">
+                        <h2 class="text-foreground-light dark:text-foreground-dark text-2xl font-bold leading-tight tracking-[-0.015em] px-4 pb-4">Tanışalım ve Hayallerinizi Konuşalım</h2>
+                        <div class="p-4">
+                            <div class="max-w-lg mx-auto bg-card-light dark:bg-card-dark p-6 sm:p-8 rounded-lg border border-border-light dark:border-border-dark">
+                                <div class="flex flex-col gap-6">
+                                    <div class="flex flex-col gap-4">
+                                        <a id="phone_contact" href="#" class="flex items-center gap-3 text-foreground-light dark:text-foreground-dark hover:text-primary dark:hover:text-primary">
+                                            <span class="material-symbols-outlined text-2xl">call</span>
+                                            <span id="agent_phone_contact" class="text-base font-medium"></span>
+                                        </a>
+                                        <a id="email_contact" href="#" class="flex items-center gap-3 text-foreground-light dark:text-foreground-dark hover:text-primary dark:hover:text-primary">
+                                            <span class="material-symbols-outlined text-2xl">email</span>
+                                            <span id="agent_email_contact" class="text-base font-medium"></span>
+                                        </a>
+                                        <!-- Sosyal Medya Linkleri -->
+                                        <div class="flex gap-3 pt-2">
+                                            <a id="instagram_link" href="#" target="_blank" class="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:scale-110 transition-transform duration-200" title="Instagram">
+                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                                </svg>
+                                            </a>
+                                            <a id="facebook_link" href="#" target="_blank" class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white hover:scale-110 transition-transform duration-200" title="Facebook">
+                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="border-t border-border-light dark:border-border-dark"></div>
+                                    <p class="text-center text-subtle-light dark:text-subtle-dark text-sm">Veya aşağıdaki formu doldurun, size en kısa sürede dönüş yapayım.</p>
+                                    <form id="contactForm" class="flex flex-col gap-4">
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            <input type="text" id="customerName" name="customerName" placeholder="Adınız Soyadınız" required class="w-full px-4 py-2 rounded-lg bg-input-light dark:bg-input-dark border border-border-light dark:border-border-dark text-foreground-light dark:text-foreground-dark focus:ring-2 focus:ring-primary focus:border-primary outline-none placeholder:text-subtle-light dark:placeholder:text-subtle-dark" />
+                                            <input type="tel" id="customerPhone" name="customerPhone" placeholder="Telefon Numaranız" required class="w-full px-4 py-2 rounded-lg bg-input-light dark:bg-input-dark border border-border-light dark:border-border-dark text-foreground-light dark:text-foreground-dark focus:ring-2 focus:ring-primary focus:border-primary outline-none placeholder:text-subtle-light dark:placeholder:text-subtle-dark" />
+                                        </div>
+                                        <textarea id="customerMessage" name="customerMessage" placeholder="Mesajınız" rows="4" class="w-full px-4 py-2 rounded-lg bg-input-light dark:bg-input-dark border border-border-light dark:border-border-dark text-foreground-light dark:text-foreground-dark focus:ring-2 focus:ring-primary focus:border-primary outline-none placeholder:text-subtle-light dark:placeholder:text-subtle-dark"></textarea>
+                                        <button type="submit" class="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
+                                            <span class="truncate">WhatsApp ile Gönder</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+            <footer class="w-full py-6">
+                <div class="px-4 sm:px-6 md:px-10 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-subtle-light dark:text-subtle-dark">
+                    <div class="text-center sm:text-left">
+                        <p id="agent_name_footer" class="font-bold text-foreground-light dark:text-foreground-dark"></p>
+                        <p id="agent_company_footer"></p>
+                        <p><a id="agent_email_footer" class="hover:text-primary" href="#"></a> | <a id="agent_phone_footer" class="hover:text-primary" href="#"></a></p>
+                    </div>
+                    <p class="text-center sm:text-right">© 2025 Powered by <a class="hover:text-primary transition-colors" href="https://metraap.com" target="_blank">Metraap.com</a></p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="#" class="whatsapp-float" id="whatsapp_link" target="_blank">
+        <span class="material-symbols-outlined">add_call</span>
+        <span class="whatsapp-tooltip">WhatsApp ile iletişime geç</span>
+    </a>
+
+    <script>
+        // Function to get URL parameters - Global scope'ta tanımlı
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Function to fetch agent data from API - Global scope
+        async function fetchAgentData(agentId) {
+            if (!agentId) return null;
+
+            let endpoint;
+            const lower = String(agentId).toLowerCase();
+
+            // --- DEĞİŞİKLİK BURADA ---
+            // Eğer eski ID formatıysa, eski endpoint'i kullan
+            if (lower.startsWith('agent') || lower.startsWith('agent_')) {
+                endpoint = `/api/agents/${encodeURIComponent(agentId)}`;
+            }
+            // Diğer tüm durumlar (yeni slug'lar) için YENİ ve GÜVENİLİR slug endpoint'ini kullan
+            else {
+                endpoint = `/api/agents/slug/${encodeURIComponent(agentId)}`; // <<< '/by-subdomain/' DEĞİL, '/slug/' KULLANILACAK
+            }
+            // --- DEĞİŞİKLİK BİTTİ ---
+
+            const isProd = window.location.hostname.includes('vercel.app') || window.location.hostname.endsWith('metraap.com');
+            const apiUrl = isProd
+                ? `https://profound-flexibility-production-0b7c.up.railway.app${endpoint}`
+                : `http://localhost:8000${endpoint}`;
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error('Agent not found');
+                }
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching agent data:', error);
+                return null;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Check if we should redirect to subdomain after data loading
+            const subdomainUrl = getUrlParameter('subdomainUrl');
+            if (subdomainUrl && subdomainUrl !== '') {
+                console.log('Subdomain URL found, will redirect after data loading:', subdomainUrl);
+                
+                // Wait for page to load and data to be populated, then redirect
+                setTimeout(() => {
+                    console.log('Redirecting to subdomain:', subdomainUrl);
+                    window.location.href = subdomainUrl;
+                }, 3000); // 3 seconds delay to show the page briefly
+            }
+
+            // Get agent_id from subdomain (e.g., ahmet-ylmaz.metraap.com)
+        function getAgentIdFromSubdomain() {
+            // First try to get from query parameter
+            const agentIdFromQuery = getUrlParameter('agent_id') || getUrlParameter('agentId') || getUrlParameter('agent');
+            if (agentIdFromQuery) {
+                return agentIdFromQuery;
+            }
+            
+            // Then try to get from subdomain (e.g., ahmet-ylmaz.metraap.com)
+            const hostname = window.location.hostname;
+            const parts = hostname.split('.');
+            
+            console.log('=== SUBDOMAIN DEBUG ===');
+            console.log('Hostname:', hostname);
+            console.log('Parts:', parts);
+            
+            // Eğer subdomain varsa (ahmet-ylmaz.metraap.com veya agent123.metraap.com)
+            if (parts.length >= 3 && parts[0] !== 'www' && parts[0] !== 'metraap') {
+                const subdomain = parts[0];
+                console.log('Subdomain detected:', subdomain);
+                
+                // Tam subdomain adını döndür (agent önekini silme)
+                // fetchAgentData fonksiyonu zaten doğru endpoint'i seçecek
+                return subdomain;
+            }
+            
+            return null;
+        }
+        
+        // Create subdomain for agent (ID bazlı)
+        async function createSubdomainForAgent() {
+            try {
+                console.log('=== SUBDOMAIN CREATION STARTED (ID BASED) ===');
+                
+                // Get agent data from URL parameters
+                const agentId = getUrlParameter('agentId');
+                const agentName = getUrlParameter('agent');
+                const agentEmail = getUrlParameter('email');
+                const agentPhone = getUrlParameter('phone');
+                const companyName = getUrlParameter('company');
+                const experience = getUrlParameter('experience');
+                const city = getUrlParameter('city');
+                const happyCustomers = getUrlParameter('happyCustomers');
+                const successfulSales = getUrlParameter('successfulSales');
+                
+                console.log('Agent data from URL:', {
+                    agentId, agentName, agentEmail, agentPhone, 
+                    companyName, experience, city, happyCustomers, successfulSales
+                });
+                
+                if (!agentId || !agentName) {
+                    console.log('Missing required agent data, skipping subdomain creation');
+                    return;
+                }
+                
+                // İsim-soyisim formatında subdomain oluştur (görünüş için)
+                const nameParts = agentName.split(' ');
+                let subdomainName = '';
+                
+                if (nameParts.length >= 2) {
+                    // Ad ve soyadı al, Türkçe karakterleri temizle
+                    const firstName = nameParts[0].toLowerCase()
+                        .replace(/ğ/g, 'g').replace(/Ğ/g, 'g')
+                        .replace(/ü/g, 'u').replace(/Ü/g, 'u')
+                        .replace(/ş/g, 's').replace(/Ş/g, 's')
+                        .replace(/ı/g, 'i').replace(/İ/g, 'i')
+                        .replace(/ö/g, 'o').replace(/Ö/g, 'o')
+                        .replace(/ç/g, 'c').replace(/Ç/g, 'c');
+                    
+                    const lastName = nameParts[nameParts.length - 1].toLowerCase()
+                        .replace(/ğ/g, 'g').replace(/Ğ/g, 'g')
+                        .replace(/ü/g, 'u').replace(/Ü/g, 'u')
+                        .replace(/ş/g, 's').replace(/Ş/g, 's')
+                        .replace(/ı/g, 'i').replace(/İ/g, 'i')
+                        .replace(/ö/g, 'o').replace(/Ö/g, 'o')
+                        .replace(/ç/g, 'c').replace(/Ç/g, 'c');
+                    
+                    subdomainName = firstName + '-' + lastName;
+                } else {
+                    // Tek isim varsa, sadece onu kullan
+                    subdomainName = agentName.toLowerCase()
+                        .replace(/ğ/g, 'g').replace(/Ğ/g, 'g')
+                        .replace(/ü/g, 'u').replace(/Ü/g, 'u')
+                        .replace(/ş/g, 's').replace(/Ş/g, 's')
+                        .replace(/ı/g, 'i').replace(/İ/g, 'i')
+                        .replace(/ö/g, 'o').replace(/Ö/g, 'o')
+                        .replace(/ç/g, 'c').replace(/Ç/g, 'c')
+                        .replace(/\s+/g, '-');
+                }
+                
+                // Özel karakterleri temizle
+                subdomainName = subdomainName.replace(/[^a-z0-9-]/g, '');
+                
+                // Birden fazla tireyi tek tireye çevir
+                subdomainName = subdomainName.replace(/-+/g, '-');
+                
+                // Baş ve sondaki tireleri temizle
+                subdomainName = subdomainName.replace(/^-|-$/g, '');
+                
+                console.log('Creating subdomain:', subdomainName);
+                
+                // Call subdomain creation API
+                const subdomainResponse = await fetch('/api/create-subdomain', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        agentName: agentName,
+                        agentId: agentId,
+                        email: agentEmail,
+                        phone: agentPhone,
+                        company: companyName,
+                        experience: experience,
+                        city: city,
+                        happyCustomers: happyCustomers,
+                        successfulSales: successfulSales,
+                        subdomainName: subdomainName
+                    })
+                });
+                
+                const subdomainResult = await subdomainResponse.json();
+                console.log('Subdomain API Response:', subdomainResult);
+                
+                if (subdomainResponse.ok && subdomainResult.success) {
+                    const subdomainUrl = subdomainResult.subdomainUrl;
+                    console.log('✅ Subdomain created successfully:', subdomainUrl);
+                    
+                    // Show success message to user
+                    const successDiv = document.createElement('div');
+                    successDiv.style.cssText = `
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background: linear-gradient(135deg, #28a745, #20c997);
+                        color: white;
+                        padding: 20px;
+                        border-radius: 15px;
+                        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                        z-index: 10000;
+                        max-width: 400px;
+                        font-family: 'Work Sans', sans-serif;
+                        animation: slideIn 0.5s ease-out;
+                    `;
+                    successDiv.innerHTML = `
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-size: 24px; margin-right: 10px;">🎉</span>
+                            <strong>Kişisel Web Siteniz Hazır!</strong>
+                        </div>
+                        <p style="margin: 10px 0;">Artık kendi alan adınız var:</p>
+                        <a href="${subdomainUrl}" target="_blank" style="color: #fff; text-decoration: underline; font-weight: bold; word-break: break-all;">${subdomainUrl}</a>
+                        <div style="margin-top: 15px;">
+                            <button onclick="window.location.href='${subdomainUrl}'" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 16px; border-radius: 8px; cursor: pointer; margin-right: 10px;">Siteye Git</button>
+                            <button onclick="this.parentElement.parentElement.remove()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 16px; border-radius: 8px; cursor: pointer;">Kapat</button>
+                        </div>
+                    `;
+                    
+                    // Add animation CSS
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @keyframes slideIn {
+                            from { transform: translateX(100%); opacity: 0; }
+                            to { transform: translateX(0); opacity: 1; }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                    document.body.appendChild(successDiv);
+                    
+                    // Auto redirect after 10 seconds
+                    setTimeout(() => {
+                        if (confirm('Kişisel web sitenize yönlendirilmek istiyor musunuz?')) {
+                            window.location.href = subdomainUrl;
+                        }
+                    }, 10000);
+                    
+                } else {
+                    console.error('Subdomain creation failed:', subdomainResult.error);
+                    // Don't show error to user, just log it
+                }
+                
+            } catch (error) {
+                console.error('Error creating subdomain:', error);
+                // Don't show error to user, just log it
+            }
+        }
+        
+        // Call subdomain creation function if we have URL parameters
+        if (getUrlParameter('agentId') && getUrlParameter('agent')) {
+            createSubdomainForAgent();
+        }
+
+            // Helper functions for populating elements
+            const populateElement = (id, value, type = 'text') => {
+                const element = document.getElementById(id);
+                if (element && value) {
+                    switch (type) {
+                        case 'text': element.textContent = value; break;
+                        case 'href': element.href = value; break;
+                        case 'src': element.src = value; break;
+                        case 'value': element.value = value; break;
+                        case 'bg-image': element.style.backgroundImage = value ? `linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url('${value}')` : ''; break;
+                        case 'bg-image-profile': element.style.backgroundImage = value ? `url('${value}')` : ''; break;
+                    }
+                }
+            };
+            
+            const populateMeta = (selector, content) => {
+                const element = document.querySelector(selector);
+                if (element && content) {
+                    element.setAttribute('content', content);
+                }
+            };
+
+            // Function to populate page with agent data
+            function populatePageWithAgentData(agentData) {
+                if (!agentData || !agentData.agent) {
+                    // Show error message or redirect to error page
+                    document.body.innerHTML = '<div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;"><h1>Danışman Bulunamadı</h1><p>Üzgünüz, aradığınız danışmanı bulamadık.</p></div>';
+                    return;
+                }
+
+                const agent = agentData.agent;
+                const agentName = agent.name || '';
+                const agentCity = agent.city || '';
+                const agentCompany = agent.company || agent.company_name || '';
+                const agentPhone = agent.phone || '';
+                const agentEmail = agent.email || '';
+                const agentTitle = agent.title || 'Gayrimenkul Uzmanı';
+                const agentDescription = agent.description || `${agentName}, ${agentCity} bölgesinde emlak sektöründe ${agent.experience || 'deneyimli'} bir danışmandır. Müşterilerine en iyi hizmeti sunmayı hedeflemektedir.`;
+                const aboutText = agentDescription;
+                const profilePhotoUrl = agent.profile_photo_url || agent.image_url || agent.image || '';
+                const heroImageUrl = agent.image_url || agent.image || agent.profile_photo_url || '';
+                const agentExperience = agent.experience || '';
+                const agentClients = agent.happy_customers || '';
+                const agentSales = agent.successful_sales || '';
+                const agentSatisfaction = '98'; // Default satisfaction rate
+                const linkedinUsername = '';
+                const instagramUsername = agent.instagram_url || agent.instagramUrl || '';
+                const facebookUsername = agent.facebook_url || agent.facebookUrl || '';
+                const ogImageUrl = profilePhotoUrl;
+
+            if (agentName && agentCity) {
+                document.title = `${agentName} - ${agentCity} Bölgesindeki Kişisel Emlak Danışmanınız`;
+            }
+
+            const description = `${agentName}, ${agentCity} bölgesindeki emlak hedeflerinize ulaşmanız için kişisel rehberinizdir. İster alım, ister satım veya yatırım olsun, size özel uzmanlık hizmeti sunuyorum.`;
+            const keywords = `emlak danışmanı, gayrimenkul uzmanı, kişisel emlakçı, ${agentName}, ${agentCity}, emlak yatırımı`;
+            populateMeta("meta[name='description']", description);
+            populateMeta("meta[name='keywords']", keywords);
+            populateMeta("meta[name='author']", agentName);
+            populateMeta("meta[property='og:title']", document.title);
+            populateMeta("meta[property='og:description']", description);
+            populateMeta("meta[property='og:image']", ogImageUrl || heroImageUrl || profilePhotoUrl);
+            populateMeta("meta[property='og:image:alt']", `${agentName}'in profesyonel bir portre fotoğrafı`);
+            populateMeta("meta[property='og:site_name']", `${agentName} Kişisel Emlak Danışmanlığı`);
+
+            populateElement('agent_name_header', agentName);
+            populateElement('agent_name_hero', agentName);
+            populateElement('agent_name_about', agentName);
+            populateElement('agent_name_footer', agentName);
+            populateElement('agent_title_hero', (agentTitle || '').toLocaleUpperCase('tr-TR'));
+            populateElement('agent_city_hero1', agentCity);
+            populateElement('agent_city_hero2', agentCity);
+            populateElement('agent_city_about', agentCity);
+            populateElement('agent_company_about', agentCompany);
+            populateElement('agent_company_footer', agentCompany);
+
+            if (agentPhone) {
+                let cleanPhone = agentPhone.replace(/\D/g, '');
+                if (cleanPhone.startsWith('0')) {
+                    cleanPhone = cleanPhone.substring(1);
+                }
+                if (!cleanPhone.startsWith('90')) {
+                    cleanPhone = '90' + cleanPhone;
+                }
+                populateElement('whatsapp_link', `https://wa.me/${cleanPhone}`, 'href');
+                populateElement('agent_phone_footer', agentPhone);
+                populateElement('agent_phone_footer', `tel:+${cleanPhone}`, 'href');
+                populateElement('agent_phone_contact', agentPhone);
+                populateElement('phone_contact', `tel:+${cleanPhone}`, 'href');
+                // Header WhatsApp linkini de güncelle
+                populateElement('header-whatsapp-link', `https://wa.me/${cleanPhone}`, 'href');
+            }
+
+            if(agentEmail){
+                populateElement('agent_email_footer', agentEmail);
+                populateElement('agent_email_footer', `mailto:${agentEmail}`, 'href');
+                populateElement('agent_email_contact', agentEmail);
+                populateElement('email_contact', `mailto:${agentEmail}`, 'href');
+            }
+
+            populateElement('about_text', aboutText);
+            populateElement('profile_photo_header', profilePhotoUrl, 'bg-image-profile');
+            populateElement('profile_photo_about', profilePhotoUrl, 'src');
+            populateElement('profile_photo_hero', profilePhotoUrl, 'src');
+            populateElement('hero_background', heroImageUrl, 'bg-image');
+
+            if (agentExperience) populateElement('agent_experience', `${agentExperience}+`);
+            if (agentClients) populateElement('agent_clients', `${agentClients}+`);
+            if (agentSales) populateElement('agent_sales', `${agentSales}+`);
+            if (agentSatisfaction) populateElement('agent_satisfaction', `${agentSatisfaction}%`);
+
+            if (linkedinUsername) populateElement('linkedin_link', `https://linkedin.com/in/${linkedinUsername}`, 'href');
+            if (instagramUsername) {
+                const cleanInstagram = instagramUsername.replace('@', '').replace('https://instagram.com/', '').replace('www.instagram.com/', '').replace(/\/$/, '');
+                const instagramLink = `https://instagram.com/${cleanInstagram}`;
+                console.log('Setting Instagram link from agent data:', instagramLink);
+                populateElement('instagram_link', instagramLink, 'href');
+            }
+            if (facebookUsername) {
+                const cleanFacebook = facebookUsername.replace('@', '').replace('https://facebook.com/', '').replace('www.facebook.com/', '').replace(/\/$/, '');
+                const facebookLink = `https://facebook.com/${cleanFacebook}`;
+                console.log('Setting Facebook link from agent data:', facebookLink);
+                populateElement('facebook_link', facebookLink, 'href');
+            }
+            }
+
+            // Function to populate page from URL parameters
+            function populatePageFromUrlParameters() {
+                console.log('=== POPULATING FROM URL PARAMETERS ===');
+                
+                const agentName = getUrlParameter('agent') || 'Emlak Danışmanı';
+                const agentCity = getUrlParameter('city') || '';
+                const agentCompany = getUrlParameter('company') || 'Emlak Şirketi';
+                const agentPhone = getUrlParameter('phone') || '';
+                const agentEmail = getUrlParameter('email') || '';
+                const agentInstagram = getUrlParameter('instagramUrl') || getUrlParameter('instagram') || '';
+                const agentFacebook = getUrlParameter('facebookUrl') || getUrlParameter('facebook') || '';
+                const agentTitle = 'Gayrimenkul Uzmanı';
+                const agentDescription = `${agentName}, ${agentCity} bölgesinde emlak sektöründe ${getUrlParameter('experience') || 'deneyimli'} bir danışmandır. Müşterilerine en iyi hizmeti sunmayı hedeflemektedir.`;
+                const agentExperience = getUrlParameter('experience') || '';
+                const agentClients = getUrlParameter('happyCustomers') || '';
+                const agentSales = getUrlParameter('successfulSales') || '';
+                const agentSatisfaction = '98'; // Default satisfaction rate
+
+                console.log('URL Parameters:', {
+                    agentName, agentCity, agentCompany, agentPhone, agentEmail, 
+                    agentExperience, agentClients, agentSales
+                });
+
+                // Set page title and meta
+                if (agentName && agentCity) {
+                    document.title = `${agentName} - ${agentCity} Bölgesindeki Kişisel Emlak Danışmanınız`;
+                }
+
+                const description = `${agentName}, ${agentCity} bölgesindeki emlak hedeflerinize ulaşmanız için kişisel rehberinizdir. İster alım, ister satım veya yatırım olsun, size özel uzmanlık hizmeti sunuyorum.`;
+                const keywords = `emlak danışmanı, gayrimenkul uzmanı, kişisel emlakçı, ${agentName}, ${agentCity}, emlak yatırımı`;
+                populateMeta("meta[name='description']", description);
+                populateMeta("meta[name='keywords']", keywords);
+                populateMeta("meta[name='author']", agentName);
+                populateMeta("meta[property='og:title']", document.title);
+                populateMeta("meta[property='og:description']", description);
+
+                // Populate page elements
+                populateElement('agent_name_header', agentName);
+                populateElement('agent_name_hero', agentName);
+                populateElement('agent_name_about', agentName);
+                populateElement('agent_name_footer', agentName);
+                populateElement('agent_title_hero', agentTitle);
+                populateElement('agent_city_hero1', agentCity);
+                populateElement('agent_city_hero2', agentCity);
+                populateElement('agent_city_about', agentCity);
+                populateElement('agent_company_about', agentCompany);
+                populateElement('agent_company_footer', agentCompany);
+                populateElement('agent_description_about', agentDescription);
+                populateElement('agent_experience_about', agentExperience);
+
+                // Contact information
+                if (agentPhone) {
+                    const whatsappLink = `https://wa.me/9${agentPhone.replace(/\D/g, '')}`;
+                    populateElement('whatsapp_link', whatsappLink, 'href');
+                    populateElement('agent_phone_hero', agentPhone);
+                    populateElement('agent_phone_footer', agentPhone);
+                    // Header WhatsApp linkini de güncelle
+                    populateElement('header-whatsapp-link', whatsappLink, 'href');
+                }
+                
+                if (agentEmail) {
+                    populateElement('agent_email_footer', agentEmail);
+                    populateElement('email_link', `mailto:${agentEmail}`, 'href');
+                }
+
+                // Social media links - Use URL parameters directly
+                if (agentInstagram) {
+                    // Clean the Instagram username
+                    const cleanInstagram = agentInstagram.replace('@', '').replace('https://instagram.com/', '').replace('www.instagram.com/', '').replace(/\/$/, '');
+                    const instagramLink = `https://instagram.com/${cleanInstagram}`;
+                    console.log('Setting Instagram link:', instagramLink);
+                    populateElement('instagram_link', instagramLink, 'href');
+                }
+                
+                if (agentFacebook) {
+                    // Clean the Facebook username/page
+                    const cleanFacebook = agentFacebook.replace('@', '').replace('https://facebook.com/', '').replace('www.facebook.com/', '').replace(/\/$/, '');
+                    const facebookLink = `https://facebook.com/${cleanFacebook}`;
+                    console.log('Setting Facebook link:', facebookLink);
+                    populateElement('facebook_link', facebookLink, 'href');
+                }
+
+                // Statistics
+                if (agentExperience) populateElement('agent_experience', agentExperience);
+                if (agentClients) populateElement('agent_clients', `${agentClients}+`);
+                if (agentSales) populateElement('agent_sales', `${agentSales}+`);
+                if (agentSatisfaction) populateElement('agent_satisfaction', `${agentSatisfaction}%`);
+
+                console.log('Page populated with URL parameters successfully');
+            }
+
+            // Fetch agent data and populate page
+            const agentId = getAgentIdFromSubdomain();
+            console.log('Agent ID from subdomain or URL:', agentId);
+            
+            if (agentId) {
+                // Eğer subdomain'den geliyorsa, subdomain API'sini kullan
+                const hostname = window.location.hostname;
+                const parts = hostname.split('.');
+                const isSubdomain = parts.length >= 3 && parts[0] !== 'www' && parts[0] !== 'metraap';
+                
+                if (isSubdomain) {
+                    console.log('Loading agent data from subdomain:', agentId);
+                    // Subdomain'den agent verilerini doğru API üzerinden çek
+                    fetchAgentData(agentId)
+                        .then(agentData => {
+                            if (agentData) {
+                                console.log('Agent data loaded via fetchAgentData:', agentData);
+                                populatePageWithAgentData(agentData);
+                            } else {
+                                console.log('API failed, using URL parameters');
+                                populatePageFromUrlParameters();
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching agent data from subdomain:', error);
+                            // Fallback: URL parametrelerini kullan
+                            populatePageFromUrlParameters();
+                        });
+                } else {
+                    // URL parametresinden geliyorsa, normal API'yi kullan
+                    console.log('Loading agent data from URL parameter:', agentId);
+                    fetchAgentData(agentId).then(agentData => {
+                        if (agentData) {
+                            populatePageWithAgentData(agentData);
+                        } else {
+                            // API'den veri gelmezse URL parametrelerini kullan
+                            console.log('API failed, using URL parameters');
+                            populatePageFromUrlParameters();
+                        }
+                    });
+                }
+            } else {
+                // URL parametrelerini kontrol et
+                if (getUrlParameter('agent') || getUrlParameter('agentId')) {
+                    console.log('No agent ID but found URL parameters, using them');
+                    populatePageFromUrlParameters();
+                } else {
+                    // No agent_id in URL or subdomain, show page with default content
+                    console.log('No agent ID found, showing default page');
+                }
+            }
+        });
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.innerHTML = '<span>Yönlendiriliyor...</span>';
+            submitBtn.disabled = true;
+
+            try {
+                // Get agent phone number
+                let agentPhone = null;
+                
+                // Get agentId dynamically
+                const currentAgentId = getAgentIdFromSubdomain() || getUrlParameter('agentId') || getUrlParameter('agent');
+                console.log('Current agent ID:', currentAgentId);
+                
+                // First try to get from agent data API
+                if (currentAgentId) {
+                    console.log('Fetching agent data for ID:', currentAgentId);
+                    const agentData = await fetchAgentData(currentAgentId);
+                    console.log('Agent data fetched:', agentData);
+                    if (agentData && agentData.agent && agentData.agent.phone) {
+                        agentPhone = agentData.agent.phone;
+                        console.log('Phone from agent.agent.phone:', agentPhone);
+                    } else if (agentData && agentData.phone) {
+                        agentPhone = agentData.phone;
+                        console.log('Phone from agent.phone:', agentPhone);
+                    } else {
+                        console.log('No phone found in agent data');
+                    }
+                }
+                
+                // Fallback: try to get from page elements
+                if (!agentPhone) {
+                    console.log('Trying to get phone from page elements');
+                    const phoneElement = document.getElementById('agent_phone_contact');
+                    if (phoneElement && phoneElement.textContent) {
+                        agentPhone = phoneElement.textContent;
+                        console.log('Phone from page element:', agentPhone);
+                    }
+                }
+                
+                console.log('Final agent phone:', agentPhone);
+
+                if (agentPhone) {
+                    const customerName = document.getElementById('customerName').value;
+                    const customerPhone = document.getElementById('customerPhone').value;
+                    const customerMessage = document.getElementById('customerMessage').value;
+                    
+                    console.log('Form data:', { customerName, customerPhone, customerMessage });
+
+                    const message = `🏠 YENİ MÜŞTERİ MESAJI\n\n👤 İsim: ${customerName}\n📞 Telefon: ${customerPhone}\n💬 Mesaj: ${customerMessage}\n\n💰 Gayrimenkul danışmanlığı için iletişime geçti!`;
+                    
+                    // Telefon numarasını temizle ve Türkiye formatına çevir
+                    let cleanAgentPhone = agentPhone.replace(/\D/g, '');
+                    if (cleanAgentPhone.startsWith('0')) {
+                        cleanAgentPhone = cleanAgentPhone.substring(1);
+                    }
+                    if (!cleanAgentPhone.startsWith('90')) {
+                        cleanAgentPhone = '90' + cleanAgentPhone;
+                    }
+                    
+                    const whatsappUrl = `https://wa.me/${cleanAgentPhone}?text=${encodeURIComponent(message)}`;
+
+                    // Clear form
+                    document.getElementById('customerName').value = '';
+                    document.getElementById('customerPhone').value = '';
+                    document.getElementById('customerMessage').value = '';
+
+                    // Show success message
+                    alert('✅ Form başarıyla gönderildi! WhatsApp üzerinden mesajınızı iletin.');
+                    
+                    // Open WhatsApp
+                    window.open(whatsappUrl, '_blank');
+
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    
+                } else {
+                    throw new Error('Danışman telefon numarası bulunamadı');
+                }
+            } catch (error) {
+                console.error('Form gönderme hatası:', error);
+                alert(`❌ Hata: ${error.message}. Lütfen doğrudan WhatsApp butonunu kullanın.`);
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Phone number formatting
+        document.getElementById('customerPhone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length <= 3) {
+                    value = value;
+                } else if (value.length <= 6) {
+                    value = value.slice(0, 3) + ' ' + value.slice(3);    
+                } else if (value.length <= 8) {
+                    value = value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6);
+                } else {
+                    value = value.slice(0, 3) + ' ' + value.slice(3, 6) + ' ' + value.slice(6, 8) + ' ' + value.slice(8, 10);
+                }
+            }
+            e.target.value = value;
+        });
+
+        // 🔥 DİJİTAL KARTVİZİT PAYLAŞMA FONKSİYONU
+        document.getElementById('shareCardBtn').addEventListener('click', function() {
+            const currentUrl = window.location.href;
+            const agentName = document.getElementById('agent_name_hero').textContent || 'Emlak Danışmanı';
+            const agentTitle = document.getElementById('agent_title_hero').textContent || 'Gayrimenkul Uzmanı';
+            const agentPhone = document.getElementById('agent_phone_contact').textContent || '';
+            const agentEmail = document.getElementById('agent_email_contact').textContent || '';
+            
+            // WhatsApp paylaşma mesajı oluştur
+            const shareText = `🎯 ${agentName} - ${agentTitle}
+
+📞 Telefon: ${agentPhone}
+📧 Email: ${agentEmail}
+🌐 Web: ${currentUrl}
+
+Profesyonel emlak danışmanlığı hizmeti almak için hemen iletişime geçin!`;
+
+            // WhatsApp URL'sini oluştur
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+            
+            // Mobil cihaz kontrolü
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Mobil cihazlarda doğrudan WhatsApp uygulamasını aç
+                window.location.href = whatsappUrl;
+            } else {
+                // Masaüstünde yeni sekmede aç
+                window.open(whatsappUrl, '_blank');
+            }
+            
+            // Butona animasyon efekti ekle
+            const shareBtn = document.getElementById('shareCardBtn');
+            shareBtn.style.transform = 'scale(0.95)';
+            shareBtn.innerHTML = '<span class="material-symbols-outlined">check</span><span class="font-medium">Paylaşıldı!</span>';
+            
+            setTimeout(() => {
+                shareBtn.style.transform = 'scale(1)';
+                shareBtn.innerHTML = '<span class="material-symbols-outlined">share</span><span class="font-medium">Kartvizitimi Paylaş</span>';
+            }, 2000);
+        });
+
+        // 🔥 KOPYALAMA ÖZELLİĞİ (İkinci özellik)
+        function copyPageUrl() {
+            const currentUrl = window.location.href;
+            
+            // Modern clipboard API kullan
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(currentUrl).then(() => {
+                    // Başarılı kopyalama bildirimi
+                    showCopyNotification('✅ Link kopyalandı!');
+                }).catch(() => {
+                    // Fallback: eski yöntem
+                    fallbackCopyTextToClipboard(currentUrl);
+                });
+            } else {
+                // Fallback: eski yöntem
+                fallbackCopyTextToClipboard(currentUrl);
+            }
+        }
+
+        // Eski tarayıcılar için fallback kopyalama
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showCopyNotification('✅ Link kopyalandı!');
+            } catch (error) {
+                showCopyNotification('❌ Kopyalama başarısız oldu');
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // Kopyalama bildirimi göster
+        function showCopyNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #25D366, #128C7E);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                z-index: 10000;
+                font-family: 'Work Sans', sans-serif;
+                font-weight: 500;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Animasyonla göster
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // 3 saniye sonra gizle
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Sayfa yüklendiğinde paylaş butonunun yanına kopyalama butonu ekle
+        document.addEventListener('DOMContentLoaded', function() {
+            const shareBtn = document.getElementById('shareCardBtn');
+            if (shareBtn) {
+                // Kopyalama butonu oluştur
+                const copyBtn = document.createElement('button');
+                copyBtn.innerHTML = '<span class="material-symbols-outlined">content_copy</span>';
+                copyBtn.className = 'ml-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white p-3 rounded-lg border border-white/20 transition-all duration-300 hover:scale-105';
+                copyBtn.title = 'Linki Kopyala';
+                copyBtn.onclick = copyPageUrl;
+                
+                // Paylaş butonunun yanına ekle
+                shareBtn.parentNode.appendChild(copyBtn);
+            }
+        });
+    </script>
+    </body>
+</html>
