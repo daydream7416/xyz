@@ -1,34 +1,24 @@
 {
   "rewrites": [
     {
-      "source": "/",
+      "source": "/:path*",
       "has": [
         {
           "type": "host",
-          "value": "metraap.com"
-        }
-      ],
-      "destination": "/kayit.html"
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.metraap.com"
-        }
-      ],
-      "destination": "/kayit.html"
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "*.metraap.com"
+          "value": "(?!www\\.)(?<subdomain>.+)\\.metraap\\.com"
         }
       ],
       "destination": "/landing/main.html"
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?metraap\\.com"
+        }
+      ],
+      "destination": "/kayit.html"
     }
   ]
 }
