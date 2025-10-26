@@ -5,7 +5,17 @@
       "has": [
         {
           "type": "host",
-          "value": "test1.metraap.com"
+          "value": ".*\\.metraap\\.com"
+        }
+      ],
+      "missing": [
+        {
+          "type": "host",
+          "value": "www.metraap.com"
+        },
+        {
+          "type": "host",
+          "value": "metraap.com"
         }
       ],
       "destination": "/new-landing-v2.html"
