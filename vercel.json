@@ -4,6 +4,17 @@
       "source": "/:path*",
       "has": [
         {
+          "type": "query",
+          "key": "test",
+          "value": "rewrite"
+        }
+      ],
+      "destination": "/frontend/new-landing-v2.html"
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
           "type": "host",
           "value": ".*\\.metraap\\.com"
         }
