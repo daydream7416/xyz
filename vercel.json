@@ -21,11 +21,11 @@
       "destination": "/kayit.html"
     },
     {
-      "source": "/",
+      "source": "/((?!api/|favicon.ico).)*",
       "has": [
         {
           "type": "host",
-          "value": "test1.metraap.com"
+          "value": "(?!(www\\.|)metraap\\.com$).*"
         }
       ],
       "destination": "/landing/main.html"
