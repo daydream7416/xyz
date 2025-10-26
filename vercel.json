@@ -1,15 +1,24 @@
 {
-  "redirects": [
+  "rewrites": [
     {
       "source": "/:path*",
       "has": [
         {
           "type": "host",
-          "value": "test1.metraap.com"
+          "value": ".*\\.metraap\\.com"
         }
       ],
-      "destination": "/new-landing-v2.html",
-      "permanent": true
+      "missing": [
+        {
+          "type": "host",
+          "value": "www.metraap.com"
+        },
+        {
+          "type": "host",
+          "value": "metraap.com"
+        }
+      ],
+      "destination": "/new-landing-v2.html"
     }
   ]
 }
