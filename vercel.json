@@ -2,6 +2,16 @@
   "rewrites": [
     {
       "source": "/(.*)",
+      "destination": "/landing/main.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?!(metraap.com|www.metraap.com)$).*metraap.com"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
       "destination": "/kayit.html"
     }
   ]
