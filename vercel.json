@@ -1,5 +1,5 @@
 {
-  "redirects": [
+  "rewrites": [
     {
       "source": "/",
       "has": [
@@ -8,8 +8,7 @@
           "value": "test1.metraap.com"
         }
       ],
-      "destination": "/landing/main.html",
-      "permanent": false
+      "destination": "/landing/main.html"
     },
     {
       "source": "/",
@@ -19,8 +18,7 @@
           "value": "metraap.com"
         }
       ],
-      "destination": "/kayit.html",
-      "permanent": false
+      "destination": "/kayit.html"
     },
     {
       "source": "/",
@@ -30,8 +28,7 @@
           "value": "www.metraap.com"
         }
       ],
-      "destination": "/kayit.html",
-      "permanent": false
+      "destination": "/kayit.html"
     }
   ]
 }
