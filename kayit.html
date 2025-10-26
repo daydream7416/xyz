@@ -16,14 +16,18 @@
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
         
-        // Initialize with placeholder Pixel ID
-        fbq('init', 'PIXEL_ID_HERE');
-        fbq('track', 'PageView');
-        console.log("✅ Meta Pixel: PageView fired!");
+        // Initialize with actual Pixel ID from config
+        if (window.META_PIXEL_ID && window.META_PIXEL_ID !== 'YOUR_PIXEL_ID_HERE') {
+            fbq('init', window.META_PIXEL_ID);
+            fbq('track', 'PageView');
+            console.log("✅ Meta Pixel: PageView fired!");
+        } else {
+            console.warn("⚠️ Meta Pixel ID not configured. Please set your actual Pixel ID in config.js");
+        }
     </script>
     <noscript>
         <img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=PIXEL_ID_HERE&ev=PageView&noscript=1"/>
+        src="https://www.facebook.com/tr?id=" + (window.META_PIXEL_ID || "PIXEL_ID_NOT_SET") + "&ev=PageView&noscript=1"/>
     </noscript>
     <!-- Meta Pixel Base Code - End -->
     
