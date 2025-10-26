@@ -1,31 +1,21 @@
 {
   "rewrites": [
     {
-      "source": "/",
+      "source": "/:path*",
       "has": [
         {
           "type": "host",
-          "value": "metraap.com"
+          "value": "(www\\.)?metraap\\.com"
         }
       ],
       "destination": "/kayit.html"
     },
     {
-      "source": "/",
+      "source": "/:path*",
       "has": [
         {
           "type": "host",
-          "value": "www.metraap.com"
-        }
-      ],
-      "destination": "/kayit.html"
-    },
-    {
-      "source": "/((?!api/|favicon.ico).)*",
-      "has": [
-        {
-          "type": "host",
-          "value": "(?!(www\\.|)metraap\\.com$).*"
+          "value": ".*\\.metraap\\.com"
         }
       ],
       "destination": "/landing/main.html"
