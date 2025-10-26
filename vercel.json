@@ -1,7 +1,17 @@
 {
   "rewrites": [
     {
-      "source": "/",
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "test1.metraap.com"
+        }
+      ],
+      "destination": "/landing/main.html"
+    },
+    {
+      "source": "/:path*",
       "has": [
         {
           "type": "host",
@@ -11,7 +21,7 @@
       "destination": "/kayit.html"
     },
     {
-      "source": "/",
+      "source": "/:path*",
       "has": [
         {
           "type": "host",
@@ -19,16 +29,6 @@
         }
       ],
       "destination": "/kayit.html"
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "*.metraap.com"
-        }
-      ],
-      "destination": "/landing/main.html"
     }
   ]
 }
