@@ -1,34 +1,37 @@
 {
-  "rewrites": [
+  "redirects": [
     {
-      "source": "/:path*",
+      "source": "/",
       "has": [
         {
           "type": "host",
           "value": "test1.metraap.com"
         }
       ],
-      "destination": "/landing/main.html"
+      "destination": "/landing/main.html",
+      "permanent": false
     },
     {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.metraap.com"
-        }
-      ],
-      "destination": "/kayit.html"
-    },
-    {
-      "source": "/:path*",
+      "source": "/",
       "has": [
         {
           "type": "host",
           "value": "metraap.com"
         }
       ],
-      "destination": "/kayit.html"
+      "destination": "/kayit.html",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.metraap.com"
+        }
+      ],
+      "destination": "/kayit.html",
+      "permanent": false
     }
   ]
 }
