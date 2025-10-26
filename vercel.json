@@ -2,42 +2,6 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "test1.metraap.com"
-        }
-      ],
-      "destination": "/landing/main.html"
-    },
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "*.metraap.com"
-        }
-      ],
-      "destination": "/landing/main.html"
-    },
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "metraap.com"
-        }
-      ],
-      "destination": "/kayit.html"
-    },
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.metraap.com"
-        }
-      ],
       "destination": "/kayit.html"
     }
   ]
