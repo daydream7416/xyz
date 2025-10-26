@@ -1,8 +1,24 @@
 {
   "rewrites": [
     {
-      "source": "/test-sayfasi",
-      "destination": "/frontend/new-landing-v2.html"
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": ".*\\.metraap\\.com"
+        }
+      ],
+      "missing": [
+        {
+          "type": "host",
+          "value": "www.metraap.com"
+        },
+        {
+          "type": "host",
+          "value": "metraap.com"
+        }
+      ],
+      "destination": "/new-landing-v2.html"
     }
   ]
 }
