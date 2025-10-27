@@ -407,21 +407,6 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // Check if we should redirect to subdomain after data loading
-            const subdomainUrl = getUrlParameter('subdomainUrl');
-            if (subdomainUrl && subdomainUrl !== '') {
-                console.log('Subdomain URL found, will redirect after data loading:', subdomainUrl);
-                
-                // Wait for page to load and data to be populated, then redirect
-                setTimeout(() => {
-                    console.log('Redirecting to subdomain:', subdomainUrl);
-                    window.location.href = subdomainUrl;
-                }, 3000); // 3 seconds delay to show the page briefly
-            }
-
-            // Get agent_id from subdomain (e.g., ahmet-ylmaz.metraap.com)
         function getAgentIdFromSubdomain() {
             // First try to get from query parameter
             const agentIdFromQuery = getUrlParameter('agent_id') || getUrlParameter('agentId') || getUrlParameter('agent');
@@ -437,19 +422,29 @@
             console.log('Hostname:', hostname);
             console.log('Parts:', parts);
             
-            // Eğer subdomain varsa (ahmet-ylmaz.metraap.com veya agent123.metraap.com)
             if (parts.length >= 3 && parts[0] !== 'www' && parts[0] !== 'metraap') {
                 const subdomain = parts[0];
                 console.log('Subdomain detected:', subdomain);
-                
-                // Tam subdomain adını döndür (agent önekini silme)
-                // fetchAgentData fonksiyonu zaten doğru endpoint'i seçecek
                 return subdomain;
             }
             
             return null;
         }
-        
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Check if we should redirect to subdomain after data loading
+            const subdomainUrl = getUrlParameter('subdomainUrl');
+            if (subdomainUrl && subdomainUrl !== '') {
+                console.log('Subdomain URL found, will redirect after data loading:', subdomainUrl);
+                
+                // Wait for page to load and data to be populated, then redirect
+                setTimeout(() => {
+                    console.log('Redirecting to subdomain:', subdomainUrl);
+                    window.location.href = subdomainUrl;
+                }, 3000); // 3 seconds delay to show the page briefly
+            }
+
         // Create subdomain for agent (ID bazlı)
         async function createSubdomainForAgent() {
             try {
