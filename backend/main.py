@@ -262,28 +262,42 @@ async def register_agent_form(
     # Save to database
     db.add(new_agent)
     db.commit()
+    frontend_base_url = resolve_frontend_base_url(request)
+    landing_url = build_landing_page_url(frontend_base_url, new_agent.slug)
+    agent_url = build_agent_subdomain_url(frontend_base_url, new_agent.slug)
+
     db.refresh(new_agent)
     
     # Send webhook to n8n after successful database save
     n8n_webhook_url = os.getenv("N8N_TELEGRAM_WEBHOOK_URL")
     if n8n_webhook_url:
+        webhook_payload = {
+            "message": "Yeni emlakçı kaydı!",
+            "agent": {
+                "id": new_agent.id,
+                "name": new_agent.name,
+                "email": new_agent.email,
+                "phone": new_agent.phone,
+                "company": new_agent.company,
+                "experience": new_agent.experience,
+                "city": new_agent.city,
+                "happy_customers": new_agent.happy_customers,
+                "successful_sales": new_agent.successful_sales,
+                "instagram_url": new_agent.instagram_url,
+                "facebook_url": new_agent.facebook_url,
+                "profile_photo_url": new_agent.profile_photo_url,
+                "slug": new_agent.slug,
+                "landing_url": landing_url,
+                "agent_url": agent_url or landing_url
+            }
+        }
         try:
             async with httpx.AsyncClient() as client:
-                await client.post(n8n_webhook_url, json={
-                    "message": "Yeni emlakçı kaydı!",
-                    "agent_name": new_agent.name,
-                    "agent_email": new_agent.email,
-                    "agent_company": new_agent.company,
-                    "agent_city": new_agent.city
-                })
+                await client.post(n8n_webhook_url, json=webhook_payload)
         except httpx.RequestError as e:
             print(f"Uyarı: n8n webhook tetiklenemedi: {e}")
         except Exception as e:
             print(f"Uyarı: n8n webhook beklenmeyen hata: {e}")
-    
-    frontend_base_url = resolve_frontend_base_url(request)
-    landing_url = build_landing_page_url(frontend_base_url, new_agent.slug)
-    agent_url = build_agent_subdomain_url(frontend_base_url, new_agent.slug)
 
     return {
         "message": "Agent registered successfully",

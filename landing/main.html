@@ -940,9 +940,15 @@
                     
                     console.log('Form data:', { customerName, customerPhone, customerMessage });
 
-                    const message = `🏠 YENİ MÜŞTERİ MESAJI\n\n👤 İsim: ${customerName}\n📞 Telefon: ${customerPhone}\n💬 Mesaj: ${customerMessage}\n\n💰 Gayrimenkul danışmanlığı için iletişime geçti!`;
+                    const message = `Yeni musteri mesaji:
+
+Isim: ${customerName}
+Telefon: ${customerPhone}
+Mesaj: ${customerMessage}
+
+Gayrimenkul danismanligi icin sizinle iletisime gecmek istiyor!`;
                     
-                    // Telefon numarasını temizle ve Türkiye formatına çevir
+                    // Telefon numarasini temizle ve uluslararasi formata cevir
                     let cleanAgentPhone = agentPhone.replace(/\D/g, '');
                     if (cleanAgentPhone.startsWith('0')) {
                         cleanAgentPhone = cleanAgentPhone.substring(1);
@@ -953,16 +959,19 @@
                     
                     const whatsappUrl = `https://wa.me/${cleanAgentPhone}?text=${encodeURIComponent(message)}`;
 
-                    // Clear form
+                    // Form alanlarini temizle
                     document.getElementById('customerName').value = '';
                     document.getElementById('customerPhone').value = '';
                     document.getElementById('customerMessage').value = '';
 
-                    // Show success message
-                    alert('✅ Form başarıyla gönderildi! WhatsApp üzerinden mesajınızı iletin.');
+                    // Bilgilendirme
+                    alert('Form basariyla gonderildi! Mesajiniz WhatsApp uzerinden danismana iletilecek.');
                     
-                    // Open WhatsApp
-                    window.open(whatsappUrl, '_blank');
+                    // WhatsApp'i ac (popup engellenirse ayni sekmeye yonlendir)
+                    const newWindow = window.open(whatsappUrl, '_blank');
+                    if (!newWindow || newWindow.closed) {
+                        window.location.href = whatsappUrl;
+                    }
 
                     // Reset button
                     submitBtn.innerHTML = originalText;
