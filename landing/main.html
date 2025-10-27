@@ -354,24 +354,29 @@
             let endpoint;
             const lower = String(agentId).toLowerCase();
 
-            // --- DEĞİŞİKLİK BURADA ---
-            // Eğer eski ID formatıysa, eski endpoint'i kullan
+            // Backend'de trailing slash gerekiyor ve /api/ yok!
             if (lower.startsWith('agent') || lower.startsWith('agent_')) {
-                endpoint = `/api/agents/${encodeURIComponent(agentId)}`;
+                endpoint = `/agents/${encodeURIComponent(agentId)}/`;
             }
-            // Diğer tüm durumlar (yeni slug'lar) için YENİ ve GÜVENİLİR slug endpoint'ini kullan
             else {
-                endpoint = `/api/agents/slug/${encodeURIComponent(agentId)}`; // <<< '/by-subdomain/' DEĞİL, '/slug/' KULLANILACAK
+                endpoint = `/agents/slug/${encodeURIComponent(agentId)}/`;
             }
             // --- DEĞİŞİKLİK BİTTİ ---
 
             const isProd = window.location.hostname.includes('vercel.app') || window.location.hostname.endsWith('metraap.com');
             const apiUrl = isProd
-                ? `https://profound-flexibility-production-0b7c.up.railway.app${endpoint}`
+                ? `https://metra-ai-monorepo-production.up.railway.app${endpoint}`
                 : `http://localhost:8000${endpoint}`;
+            
+            console.log('API URL:', apiUrl, 'isProd:', isProd, 'hostname:', window.location.hostname);
 
             try {
-                const response = await fetch(apiUrl);
+                // Cache busting için timestamp ekle
+                const cacheBuster = new Date().getTime();
+                const finalUrl = apiUrl.includes('?') ? `${apiUrl}&_t=${cacheBuster}` : `${apiUrl}?_t=${cacheBuster}`;
+                console.log('Final fetch URL:', finalUrl);
+                
+                const response = await fetch(finalUrl);
                 if (!response.ok) {
                     throw new Error('Agent not found');
                 }
@@ -611,13 +616,14 @@
 
             // Function to populate page with agent data
             function populatePageWithAgentData(agentData) {
-                if (!agentData || !agentData.agent) {
+                if (!agentData) {
                     // Show error message or redirect to error page
                     document.body.innerHTML = '<div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;"><h1>Danışman Bulunamadı</h1><p>Üzgünüz, aradığınız danışmanı bulamadık.</p></div>';
                     return;
                 }
 
-                const agent = agentData.agent;
+                // Backend'den gelen veri yapısına göre agent'ı al
+                const agent = agentData.agent || agentData;
                 const agentName = agent.name || '';
                 const agentCity = agent.city || '';
                 const agentCompany = agent.company || agent.company_name || '';
