@@ -390,7 +390,10 @@
             try {
                 // Cache busting için timestamp ekle
                 const cacheBuster = new Date().getTime();
-                const finalUrl = apiUrl.includes('?') ? `${apiUrl}&_t=${cacheBuster}` : `${apiUrl}?_t=${cacheBuster}`;
+                let finalUrl = apiUrl.includes('?') ? `${apiUrl}&_t=${cacheBuster}` : `${apiUrl}?_t=${cacheBuster}`;
+                if (finalUrl.startsWith('http://')) {
+                    finalUrl = finalUrl.replace('http://', 'https://');
+                }
                 console.log('Final fetch URL:', finalUrl);
                 
                 const response = await fetch(finalUrl);
