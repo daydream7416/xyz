@@ -9,8 +9,8 @@ window.API_CONFIG = {
         if (isLocalhost) {
             return 'http://localhost:8000/api/agent/register';
         } else {
-            // Use relative path for production
-            return '/api/agent/register';
+            // Use Railway backend URL for production
+            return 'https://metra-ai-monorepo-production.up.railway.app/api/agent/register';
         }
     }
 };

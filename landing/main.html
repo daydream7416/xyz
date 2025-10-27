@@ -363,10 +363,27 @@
             }
             // --- DEĞİŞİKLİK BİTTİ ---
 
+            // Local test modu - URL'de local=true parametresi varsa localhost kullan
+            const urlParams = new URLSearchParams(window.location.search);
+            const isLocalTest = urlParams.get('local') === 'true';
+            
             const isProd = window.location.hostname.includes('vercel.app') || window.location.hostname.endsWith('metraap.com');
-            const apiUrl = isProd
-                ? `https://metra-ai-monorepo-production.up.railway.app${endpoint}`
-                : `http://localhost:8000${endpoint}`;
+            let apiUrl;
+            
+            if (isLocalTest) {
+                // Local test modu
+                apiUrl = `http://localhost:8000${endpoint}`;
+            } else {
+                // Normal prod/local mantığı
+                apiUrl = isProd
+                    ? `https://metra-ai-monorepo-production.up.railway.app${endpoint}`
+                    : `http://localhost:8000${endpoint}`;
+                
+                // HTTPS kontrolü - Eğer sayfa HTTPS ile yüklenmişse API'yi da HTTPS yap
+                if (window.location.protocol === 'https:' && apiUrl.startsWith('http://')) {
+                    apiUrl = apiUrl.replace('http://', 'https://');
+                }
+            }
             
             console.log('API URL:', apiUrl, 'isProd:', isProd, 'hostname:', window.location.hostname);
 
@@ -717,6 +734,7 @@
                 console.log('Setting Facebook link from agent data:', facebookLink);
                 populateElement('facebook_link', facebookLink, 'href');
             }
+
             }
 
             // Function to populate page from URL parameters
@@ -849,7 +867,10 @@
                             console.log('API failed, using URL parameters');
                             populatePageFromUrlParameters();
                         }
-                    });
+                    }).catch(error => {
+                            console.error('Error fetching agent data from URL parameter:', error);
+                            populatePageFromUrlParameters();
+                        });
                 }
             } else {
                 // URL parametrelerini kontrol et
@@ -862,6 +883,8 @@
                 }
             }
         });
+    </script>
+    <script>
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
@@ -1056,6 +1079,7 @@ Profesyonel emlak danışmanlığı hizmeti almak için hemen iletişime geçin!
 
         // Kopyalama bildirimi göster
         function showCopyNotification(message) {
+            // Bildirim oluştur
             const notification = document.createElement('div');
             notification.style.cssText = `
                 position: fixed;

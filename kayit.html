@@ -464,10 +464,10 @@
             formData.append('company', document.getElementById('company').value);
             formData.append('experience', document.getElementById('experience').value);
             formData.append('city', document.getElementById('city').value);
-            formData.append('happyCustomers', document.getElementById('happyCustomers').value || '0');
-            formData.append('successfulSales', document.getElementById('successfulSales').value || '0');
-            formData.append('instagramUrl', document.getElementById('instagramUrl').value || '');
-            formData.append('facebookUrl', document.getElementById('facebookUrl').value || '');
+            formData.append('happy_customers', document.getElementById('happyCustomers').value || '0');
+            formData.append('successful_sales', document.getElementById('successfulSales').value || '0');
+            formData.append('instagram_url', document.getElementById('instagramUrl').value || '');
+            formData.append('facebook_url', document.getElementById('facebookUrl').value || '');
             
             // Append Instagram and Facebook URLs to URL parameters
             const instagramUrlRaw = document.getElementById('instagramUrl').value || '';
@@ -478,8 +478,8 @@
             const facebookUrl = validateAndFixSocialUrl(facebookUrlRaw, 'facebook');
             
             // FormData'ya düzenlenmiş URL'leri ekle
-            formData.set('instagramUrl', instagramUrl);
-            formData.set('facebookUrl', facebookUrl);
+            formData.set('instagram_url', instagramUrl);
+            formData.set('facebook_url', facebookUrl);
             
             // Specialties alanı - şimdilik boş gönder
             formData.append('specialties', '');
@@ -506,6 +506,10 @@
                 
                 console.log('Response status:', response.status);
                 console.log('Response ok:', response.ok);
+                console.log('Response headers:', [...response.headers.entries()]);
+                console.log('Request URL:', apiUrl);
+                console.log('Request method:', 'POST');
+                console.log('FormData entries:', [...formData.entries()]);
                 
                 updateDebugInfo(`📡 Response status: ${response.status}`);
                 updateDebugInfo(`✅ Response ok: ${response.ok}`);
