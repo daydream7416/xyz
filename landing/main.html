@@ -354,12 +354,12 @@
             let endpoint;
             const lower = String(agentId).toLowerCase();
 
-            // Backend'de trailing slash gerekiyor ve /api/ yok!
+            // Backend endpointleri trailing slash olmadan calisiyor
             if (lower.startsWith('agent') || lower.startsWith('agent_')) {
-                endpoint = `/agents/${encodeURIComponent(agentId)}/`;
+                endpoint = `/agents/${encodeURIComponent(agentId)}`;
             }
             else {
-                endpoint = `/agents/slug/${encodeURIComponent(agentId)}/`;
+                endpoint = `/agents/slug/${encodeURIComponent(agentId)}`;
             }
             // --- DEĞİŞİKLİK BİTTİ ---
 
