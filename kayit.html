@@ -527,10 +527,11 @@
                     <!-- Meta Pixel Lead Event - End -->
                     
                     // Use clean landing URL from backend response
-                    const cleanLandingUrl = result.landing_url;
+                    const agentUrl = result.agent_url || result.landing_url;
+                    const cleanLandingUrl = agentUrl;
                     
                     if (!cleanLandingUrl) {
-                        throw new Error("Backend response did not include 'landing_url'");
+                        throw new Error("Backend response did not include a redirect URL");
                     }
                     
                     console.log('Redirecting to clean landing URL from backend:', cleanLandingUrl);

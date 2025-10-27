@@ -8,7 +8,7 @@ import cloudinary
 import cloudinary.uploader
 import httpx
 from fastapi.middleware.cors import CORSMiddleware
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urlunparse
 
 from database import engine, get_db
 from models import Agent
@@ -133,6 +133,40 @@ def resolve_frontend_base_url(request: Request) -> str:
     return "https://metra-ai-monorepo.vercel.app"
 
 
+def build_landing_page_url(frontend_base_url: str, slug: str) -> str:
+    base = (frontend_base_url or "").rstrip("/")
+    if not base:
+        return f"/landing/main.html?agent={slug}"
+    return f"{base}/landing/main.html?agent={slug}"
+
+
+def build_agent_subdomain_url(frontend_base_url: str, slug: str) -> str | None:
+    """Derive https://{slug}.example.com if wildcard subdomain setup exists."""
+    if not frontend_base_url or not slug:
+        return None
+
+    parsed = urlparse(frontend_base_url)
+    scheme = parsed.scheme or "https"
+    host = parsed.netloc
+    if not host:
+        return None
+
+    host_no_port, _, port = host.partition(":")
+    if host_no_port.startswith("www."):
+        host_no_port = host_no_port[4:]
+
+    # Yalnızca özel domainlerde subdomain üretelim (localhost veya vercel app değil)
+    invalid_hosts = {"localhost", "127.0.0.1"}
+    if not host_no_port or any(host_no_port.startswith(prefix) for prefix in invalid_hosts) or host_no_port.endswith(".vercel.app"):
+        return None
+
+    netloc = f"{slug}.{host_no_port}"
+    if port:
+        netloc = f"{netloc}:{port}"
+
+    return urlunparse((scheme, netloc, "", "", "", ""))
+
+
 @app.post("/api/register")
 async def register_agent_form(
     request: Request,
@@ -248,6 +282,8 @@ async def register_agent_form(
             print(f"Uyarı: n8n webhook beklenmeyen hata: {e}")
     
     frontend_base_url = resolve_frontend_base_url(request)
+    landing_url = build_landing_page_url(frontend_base_url, new_agent.slug)
+    agent_url = build_agent_subdomain_url(frontend_base_url, new_agent.slug)
 
     return {
         "message": "Agent registered successfully",
@@ -256,7 +292,8 @@ async def register_agent_form(
         "email": new_agent.email,
         "profile_photo_url": new_agent.profile_photo_url,
         "slug": new_agent.slug,
-        "landing_url": f"{frontend_base_url}/landing/main.html?agent={new_agent.slug}"
+        "landing_url": landing_url,
+        "agent_url": agent_url or landing_url
     }
 
 # /api/agent/register endpoint - /api/register ile aynı işlevi yapar
