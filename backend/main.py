@@ -193,6 +193,22 @@ async def register_agent_form(
                 count += 1
             slug = new_slug
     
+    # Prevent duplicate email registrations
+    existing_email_agent = db.query(Agent).filter(Agent.email == email).first()
+    if existing_email_agent:
+        raise HTTPException(
+            status_code=400,
+            detail="Bu e-posta adresiyle daha önce kayıt yapılmış. Lütfen farklı bir e-posta deneyin."
+        )
+
+    # Ensure slug is unique even if provided manually
+    existing_slug_agent = db.query(Agent).filter(Agent.slug == slug).first()
+    if existing_slug_agent:
+        raise HTTPException(
+            status_code=400,
+            detail="Bu isimle daha önce kayıt yapılmış. Lütfen farklı bir isim/slug seçin."
+        )
+
     # Create new agent with form data and uploaded image URL
     new_agent = Agent(
         name=name,
