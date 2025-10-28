@@ -140,11 +140,17 @@
                     <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" href="#about">Hakkımda</a>
                     <a class="text-sm font-medium text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition-colors" href="#contact">İletişim</a>
                 </div>
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <a href="/login" class="hidden sm:inline-flex items-center justify-center h-10 px-4 text-sm font-semibold text-subtle-light dark:text-subtle-dark hover:text-primary dark:hover:text-primary transition">
+                        Giriş Yap
+                    </a>
+                    <a href="/dashboard" class="inline-flex items-center justify-center h-10 px-4 text-sm font-semibold rounded-lg border border-primary text-primary hover:bg-primary hover:text-white transition">
+                        İlan Ekle
+                    </a>
                     <a id="header-whatsapp-link" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]" href="#">
                         <span class="truncate">İletişime Geç</span>
                     </a>
-                    <div id="profile_photo_header" class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" loading="lazy"></div>
+                    <div id="profile_photo_header" class="hidden sm:block bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" loading="lazy"></div>
                 </div>
             </header>
         <main class="flex-1">
@@ -198,31 +204,226 @@
                             </div>
                         </div>
                     </section>
-                    <section id="services">
-                        <h2 class="text-foreground-light dark:text-foreground-dark text-2xl font-bold leading-tight tracking-[-0.015em] px-4 pb-4">Uzmanlık Alanlarım</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 p-4">
-                            <div class="flex flex-col items-center text-center gap-4 rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
-                                <div class="text-primary bg-primary/10 dark:bg-primary/20 rounded-full p-3"><span class="material-symbols-outlined text-4xl">real_estate_agent</span></div>
-                                <h3 class="text-foreground-light dark:text-foreground-dark text-lg font-bold leading-tight">Alıcı & Satıcı Danışmanlığı</h3>
-                                <p class="text-subtle-light dark:text-subtle-dark text-sm">İster ilk evinizi alıyor, ister mülkünüzü satıyor olun, tüm süreç boyunca size özel rehberlik ve stratejik destek sunuyorum.</p>
+                                                            <section id="portfoy" class="px-4 py-12" x-data="{
+                        activeCategory: 'arsa',
+                        categoryDescriptions: {
+                            arsa: 'İmarlı arsalarla geleceğe değer katmak isteyen yatırımcılara yönelik seçeneklerimizi keşfedin.',
+                            isyeri: 'Yüksek görünürlüklü mağazalardan modern ofislere kadar işletmenize uygun işyerleri sunuyoruz.',
+                            daire: 'Aile yaşamı ve yatırım için özenle seçilmiş daireleri bütçenize göre sıraladık.'
+                        },
+                        listings: {
+                            arsa: [
+                                {
+                                    title: 'Merkezde İmarlı Arsa',
+                                    status: 'Satılık',
+                                    price: '12.750.000 ₺',
+                                    location: 'Çankaya, Ankara',
+                                    image: 'https://images.unsplash.com/photo-1600585154340-0ef3c08f05ff?q=80&w=1080&auto=format&fit=crop',
+                                    tagline: '850 m² köşe parsel, %40-2 kat imar izni.',
+                                    specs: ['850 m²', 'Konut imarlı', 'Emsal 1.80'],
+                                    detailsUrl: '#',
+                                    isFeatured: true
+                                },
+                                {
+                                    title: 'Doğa Manzaralı Villa Arsası',
+                                    status: 'Satılık',
+                                    price: '8.400.000 ₺',
+                                    location: 'Urla, İzmir',
+                                    image: 'https://images.unsplash.com/photo-1515516969-d4008cc6241d?q=80&w=1080&auto=format&fit=crop',
+                                    tagline: 'Çeşme otoyoluna 5 dk, 1.200 m² müstakil parsel.',
+                                    specs: ['1.200 m²', 'Villa imarlı', 'Altyapı hazır'],
+                                    detailsUrl: '#',
+                                    isFeatured: false
+                                },
+                                {
+                                    title: 'Sanayi Parseli',
+                                    status: 'Kiralık',
+                                    price: '95.000 ₺ / ay',
+                                    location: 'Dilovası OSB, Kocaeli',
+                                    image: 'https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?q=80&w=1080&auto=format&fit=crop',
+                                    tagline: 'Geniş tır trafiğine uygun düz zemin.',
+                                    specs: ['3.000 m²', 'Sanayi imarlı', 'Yola sıfır'],
+                                    detailsUrl: '#',
+                                    isFeatured: false
+                                }
+                            ],
+                            isyeri: [
+                                {
+                                    title: 'Cadde Üzeri Mağaza',
+                                    status: 'Kiralık',
+                                    price: '65.000 ₺ / ay',
+                                    location: 'Bağdat Caddesi, İstanbul',
+                                    image: 'https://images.unsplash.com/photo-1529429617124-aee455fa6f35?q=80&w=1080&auto=format&fit=crop',
+                                    tagline: 'Günde 12.000 yaya trafiği, 8 metre vitrin.',
+                                    specs: ['240 m²', 'Zemin + asma kat', 'Klima altyapısı'],
+                                    detailsUrl: '#',
+                                    isFeatured: true
+                                },
+                                {
+                                    title: 'Hazır Ofis Katı',
+                                    status: 'Satılık',
+                                    price: '18.900.000 ₺',
+                                    location: 'Maslak, İstanbul',
+                                    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1080&auto=format&fit=crop',
+                                    tagline: 'LEED Gold sertifikalı plazada anahtar teslim.',
+                                    specs: ['410 m²', '12 kapalı ofis', '4 araçlık otopark'],
+                                    detailsUrl: '#',
+                                    isFeatured: false
+                                },
+                                {
+                                    title: 'Depo & Lojistik Merkezi',
+                                    status: 'Kiralık',
+                                    price: '110.000 ₺ / ay',
+                                    location: 'Gaziemir, İzmir',
+                                    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1080&auto=format&fit=crop',
+                                    tagline: 'Lojistik köyüne 2 km, 9 metre tavan yüksekliği.',
+                                    specs: ['1.600 m²', 'Yükleme rampası', '24/7 güvenlik'],
+                                    detailsUrl: '#',
+                                    isFeatured: false
+                                }
+                            ],
+                            daire: [
+                                {
+                                    title: 'Boğaz Manzaralı Penthouse',
+                                    status: 'Satılık',
+                                    price: '42.000.000 ₺',
+                                    location: 'Bebek, İstanbul',
+                                    image: 'https://images.unsplash.com/photo-1613553497126-404aea79168e?q=80&w=1080&auto=format&fit=crop',
+                                    tagline: '360° manzara, özel asansör ve teras.',
+                                    specs: ['4+1', '280 m² brüt', 'Akıllı ev sistemi'],
+                                    detailsUrl: '#',
+                                    isFeatured: true
+                                },
+                                {
+                                    title: 'Yeni Projede Aile Dairesi',
+                                    status: 'Satılık',
+                                    price: '9.750.000 ₺',
+                                    location: 'Ataşehir, İstanbul',
+                                    image: 'https://images.unsplash.com/photo-1628744448840-cf61e4bcf5b0?q=80&w=1080&auto=format&fit=crop',
+                                    tagline: 'Site içi 7/24 güvenlik, sosyal donatılar.',
+                                    specs: ['3+1', '145 m² brüt', 'Kapalı otopark'],
+                                    detailsUrl: '#',
+                                    isFeatured: false
+                                },
+                                {
+                                    title: 'Merkezi Konumda Loft Daire',
+                                    status: 'Kiralık',
+                                    price: '32.000 ₺ / ay',
+                                    location: 'Alsancak, İzmir',
+                                    image: 'https://images.unsplash.com/photo-1599423300746-b62533397364?q=80&w=1080&auto=format&fit=crop',
+                                    tagline: 'Tarihi binada yüksek tavanlı loft yaşam.',
+                                    specs: ['2+1', '115 m² brüt', 'Ebeveyn banyosu'],
+                                    detailsUrl: '#',
+                                    isFeatured: false
+                                }
+                            ]
+                        }
+                    }">
+                        <div class="bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark rounded-lg p-6 mb-8">
+                            <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+                                <div class="max-w-2xl">
+                                    <p class="text-primary text-sm font-semibold uppercase tracking-[0.18em] mb-2">Portföy Merkezi</p>
+                                    <h2 class="text-foreground-light dark:text-foreground-dark text-3xl font-bold leading-tight tracking-[-0.02em]">Satılık ve Kiralık Mülklerinize Tek Sayfadan Erişim</h2>
+                                    <p class="text-subtle-light dark:text-subtle-dark mt-3">Alıcılar için güncel ilan akışı, danışmanlar için ise hızlı filtreleme ve düzenleme ekranları. Aradığınız gayrimenkule saniyeler içinde ulaşın.</p>
+                                </div>
+                                <form class="w-full max-w-xl bg-background-light dark:bg-background-dark/40 border border-border-light dark:border-border-dark rounded-lg p-4 shadow-sm grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div class="col-span-1 sm:col-span-2">
+                                        <label class="block text-sm font-semibold text-subtle-light dark:text-subtle-dark mb-2" for="search-keyword">Anahtar Kelime</label>
+                                        <input id="search-keyword" type="search" placeholder="Örn. Boğaz manzaralı daire" class="w-full rounded-lg border border-border-light dark:border-border-dark bg-input-light dark:bg-input-dark px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-subtle-light dark:text-subtle-dark mb-2" for="search-location">Lokasyon</label>
+                                        <input id="search-location" type="text" placeholder="Semt, ilçe" class="w-full rounded-lg border border-border-light dark:border-border-dark bg-input-light dark:bg-input-dark px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-subtle-light dark:text-subtle-dark mb-2" for="search-status">Durum</label>
+                                        <select id="search-status" class="w-full rounded-lg border border-border-light dark:border-border-dark bg-input-light dark:bg-input-dark px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                                            <option value="">Satılık & Kiralık</option>
+                                            <option value="sale">Satılık</option>
+                                            <option value="rent">Kiralık</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-subtle-light dark:text-subtle-dark mb-2" for="price-min">Minimum Fiyat</label>
+                                        <input id="price-min" type="number" placeholder="₺" class="w-full rounded-lg border border-border-light dark:border-border-dark bg-input-light dark:bg-input-dark px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-subtle-light dark:text-subtle-dark mb-2" for="price-max">Maksimum Fiyat</label>
+                                        <input id="price-max" type="number" placeholder="₺" class="w-full rounded-lg border border-border-light dark:border-border-dark bg-input-light dark:bg-input-dark px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                                    </div>
+                                    <div class="col-span-1 sm:col-span-2 flex items-center justify-between gap-2">
+                                        <div class="flex items-center gap-2">
+                                            <input id="featured-only" type="checkbox" class="rounded border-border-light text-primary focus:ring-primary" />
+                                            <label for="featured-only" class="text-sm text-subtle-light dark:text-subtle-dark">Yalnızca öne çıkanları göster</label>
+                                        </div>
+                                        <button type="button" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 transition">Filtrele</button>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="flex flex-col items-center text-center gap-4 rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
-                                <div class="text-primary bg-primary/10 dark:bg-primary/20 rounded-full p-3"><span class="material-symbols-outlined text-4xl">gavel</span></div>
-                                <h3 class="text-foreground-light dark:text-foreground-dark text-lg font-bold leading-tight">Müzakere ve Değerleme</h3>
-                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Sizin için en iyi anlaşmayı sağlamak adına güçlü müzakere becerilerimi ve piyasa bilgimi kullanarak mülkünüzün doğru değerini belirliyorum.</p>
+                        </div>
+                        <div class="flex flex-col gap-6">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <button type="button" class="px-4 py-2 rounded-full text-sm font-semibold border border-border-light dark:border-border-dark transition" :class="activeCategory === 'arsa' ? 'bg-primary text-white border-primary' : 'bg-card-light dark:bg-card-dark text-subtle-light dark:text-subtle-dark'" @click="activeCategory = 'arsa'">Arsa</button>
+                                <button type="button" class="px-4 py-2 rounded-full text-sm font-semibold border border-border-light dark:border-border-dark transition" :class="activeCategory === 'isyeri' ? 'bg-primary text-white border-primary' : 'bg-card-light dark:bg-card-dark text-subtle-light dark:text-subtle-dark'" @click="activeCategory = 'isyeri'">İşyeri</button>
+                                <button type="button" class="px-4 py-2 rounded-full text-sm font-semibold border border-border-light dark:border-border-dark transition" :class="activeCategory === 'daire' ? 'bg-primary text-white border-primary' : 'bg-card-light dark:bg-card-dark text-subtle-light dark:text-subtle-dark'" @click="activeCategory = 'daire'">Daire</button>
                             </div>
-                            <div class="flex flex-col items-center text-center gap-4 rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
-                                <div class="text-primary bg-primary/10 dark:bg-primary/20 rounded-full p-3"><span class="material-symbols-outlined text-4xl">digital_wellbeing</span></div>
-                                <h3 class="text-foreground-light dark:text-foreground-dark text-lg font-bold leading-tight">Dijital Görünürlük</h3>
-                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Mülkünüzü doğru alıcıların önüne çıkarmak için hedefli dijital reklamlar, sosyal medya kampanyaları ve profesyonel listeleme stratejileri geliştiriyorum.</p>
+                            <p class="text-subtle-light dark:text-subtle-dark text-sm" x-text="categoryDescriptions[activeCategory]"></p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                                <template x-for="property in listings[activeCategory]" :key="property.title">
+                                    <article class="flex flex-col overflow-hidden rounded-xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-sm">
+                                        <div class="relative">
+                                            <img :src="property.image" class="h-52 w-full object-cover" loading="lazy" :alt="property.title" />
+                                            <div class="absolute left-4 top-4 flex items-center gap-2">
+                                                <span class="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-foreground-light" x-text="property.status"></span>
+                                                <template x-if="property.isFeatured">
+                                                    <span class="rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white">Öne Çıkan</span>
+                                                </template>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-1 flex-col gap-4 p-6">
+                                            <div>
+                                                <h3 class="text-lg font-semibold text-foreground-light dark:text-foreground-dark" x-text="property.title"></h3>
+                                                <p class="text-sm text-subtle-light dark:text-subtle-dark mt-1" x-text="property.tagline"></p>
+                                            </div>
+                                            <div class="flex flex-wrap gap-2 text-sm text-subtle-light dark:text-subtle-dark">
+                                                <span class="flex items-center gap-1 rounded-full bg-background-light dark:bg-background-dark/60 px-3 py-1"><span class="material-symbols-outlined text-base">place</span><span x-text="property.location"></span></span>
+                                                <span class="flex items-center gap-1 rounded-full bg-background-light dark:bg-background-dark/60 px-3 py-1"><span class="material-symbols-outlined text-base">payments</span><span x-text="property.price"></span></span>
+                                            </div>
+                                            <ul class="grid grid-cols-1 gap-2 text-sm text-subtle-light dark:text-subtle-dark">
+                                                <template x-for="spec in property.specs" :key="spec">
+                                                    <li class="flex items-center gap-2">
+                                                        <span class="material-symbols-outlined text-base text-primary">check_small</span>
+                                                        <span x-text="spec"></span>
+                                                    </li>
+                                                </template>
+                                            </ul>
+                                            <div class="mt-auto flex items-center justify-between pt-4 border-t border-border-light dark:border-border-dark">
+                                                <a :href="property.detailsUrl" class="text-primary font-semibold text-sm flex items-center gap-1 hover:gap-2 transition">
+                                                    Detayları İncele
+                                                    <span class="material-symbols-outlined text-base">arrow_forward</span>
+                                                </a>
+                                                <button type="button" class="rounded-lg border border-primary px-4 py-2 text-sm font-semibold text-primary hover:bg-primary hover:text-white transition">Randevu Al</button>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </template>
                             </div>
-                            <div class="flex flex-col items-center text-center gap-4 rounded-lg border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6">
-                                <div class="text-primary bg-primary/10 dark:bg-primary/20 rounded-full p-3"><span class="material-symbols-outlined text-4xl">inventory</span></div>
-                                <h3 class="text-foreground-light dark:text-foreground-dark text-lg font-bold leading-tight">Portföy Pazarlaması</h3>
-                                <p class="text-subtle-light dark:text-subtle-dark text-sm">Yatırımcılar ve birden fazla mülkü olan müşteriler için özel portföy pazarlama planları oluşturarak varlıklarınızın değerini en üst düzeye çıkarıyorum.</p>
+                            <div class="flex flex-col gap-4 rounded-xl border border-dashed border-primary bg-primary/5 p-6">
+                                <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-foreground-light dark:text-foreground-dark">Danışman Paneli ile İlanlarınızı Yönetin</h3>
+                                        <p class="text-sm text-subtle-light dark:text-subtle-dark">Her emlakçı kendine özel şifreyle giriş yaparak ilan ekleyebilir, fiyat ve görselleri güncelleyebilir.</p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2">
+                                        <a href="/login" class="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white transition hover:bg-primary/90">Giriş Yap</a>
+                                        <a href="/dashboard" class="inline-flex items-center justify-center rounded-lg border border-primary px-5 py-2 text-sm font-semibold text-primary transition hover:bg-primary hover:text-white">İlan Ekle</a>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-subtle-light dark:text-subtle-dark">Giriş yetkileri her danışmana özel tanımlanır; sisteme kayıtlı broker yalnızca kendi portföyünü görüntüler ve düzenler.</p>
                             </div>
                         </div>
                     </section>
+
                     <section id="about">
                         <h2 class="text-foreground-light dark:text-foreground-dark text-2xl font-bold leading-tight tracking-[-0.015em] px-4 pb-4">Benim Hikayem</h2>
                         <div class="p-4">
@@ -339,6 +540,156 @@
     </a>
 
     <script>
+        const PORTFOLIO_FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1080&auto=format&fit=crop';
+
+        function buildApiUrl(endpoint) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const isLocalTest = urlParams.get('local') === 'true';
+            const isProd = window.location.hostname.includes('vercel.app') || window.location.hostname.endsWith('metraap.com');
+
+            let baseUrl;
+            if (isLocalTest) {
+                baseUrl = 'http://localhost:8000';
+            } else {
+                baseUrl = isProd ? 'https://metra-ai-monorepo-production.up.railway.app' : 'http://localhost:8000';
+            }
+
+            if (window.location.protocol === 'https:' && baseUrl.startsWith('http://') && !baseUrl.includes('localhost') && !baseUrl.includes('127.0.0.1')) {
+                baseUrl = baseUrl.replace('http://', 'https://');
+            }
+
+            const normalized = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+            let finalUrl = `${baseUrl}${normalized}`;
+            const cacheBuster = Date.now();
+            finalUrl += finalUrl.includes('?') ? `&_t=${cacheBuster}` : `?_t=${cacheBuster}`;
+            return finalUrl;
+        }
+
+        async function fetchFromBackend(endpoint) {
+            const url = buildApiUrl(endpoint);
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Backend request failed: ${response.status}`);
+                }
+                return await response.json();
+            } catch (error) {
+                console.error('Backend fetch error:', error);
+                return null;
+            }
+        }
+
+        function ensurePortfolioController() {
+            const section = document.getElementById('portfoy');
+            if (!section || !section.__x) {
+                return null;
+            }
+            const data = section.__x.$data;
+            if (!data._defaultListings) {
+                data._defaultListings = JSON.parse(JSON.stringify(data.listings || {}));
+            }
+            if (typeof data.hasDynamicData === 'undefined') {
+                data.hasDynamicData = false;
+            }
+            if (typeof data.overrideListings !== 'function') {
+                data.overrideListings = function overrideListings(newListings) {
+                    const categories = ['arsa', 'isyeri', 'daire'];
+                    if (!this._defaultListings) {
+                        this._defaultListings = JSON.parse(JSON.stringify(this.listings || {}));
+                    }
+                    let hasData = false;
+                    const updated = {};
+                    categories.forEach((category) => {
+                        const items = Array.isArray(newListings[category]) ? newListings[category] : [];
+                        if (items.length) {
+                            updated[category] = items;
+                            hasData = true;
+                        } else if (this._defaultListings[category]) {
+                            updated[category] = this._defaultListings[category];
+                        } else {
+                            updated[category] = [];
+                        }
+                    });
+                    this.listings = updated;
+                    this.hasDynamicData = hasData;
+                    const firstFilled = ['arsa', 'isyeri', 'daire'].find((cat) => this.listings[cat] && this.listings[cat].length);
+                    if (firstFilled) {
+                        this.activeCategory = firstFilled;
+                    }
+                };
+            }
+            return data;
+        }
+
+        function normalizeStatus(status) {
+            if (!status) return 'Satılık';
+            const lower = status.toString().toLowerCase();
+            if (lower === 'kiralık') return 'Kiralık';
+            return lower.charAt(0).toUpperCase() + lower.slice(1);
+        }
+
+        function mapPropertiesByCategory(properties) {
+            const grouped = { arsa: [], isyeri: [], daire: [] };
+            if (!Array.isArray(properties)) {
+                return grouped;
+            }
+            properties.forEach((item) => {
+                if (!item) return;
+                const category = (item.category || '').toLowerCase();
+                const target = grouped[category] ? category : 'arsa';
+                const specs = Array.isArray(item.specs) ? item.specs : [];
+                grouped[target].push({
+                    title: item.title || 'Gayrimenkul',
+                    status: normalizeStatus(item.status),
+                    price: item.price || '',
+                    location: item.location || '',
+                    image: item.image_url || PORTFOLIO_FALLBACK_IMAGE,
+                    tagline: item.tagline || '',
+                    specs,
+                    detailsUrl: item.details_url || '#',
+                    isFeatured: Boolean(item.featured),
+                });
+            });
+            return grouped;
+        }
+
+        function applyPortfolioData(properties, attempt = 0) {
+            const data = ensurePortfolioController();
+            if (!data) {
+                if (attempt < 10) {
+                    setTimeout(() => applyPortfolioData(properties, attempt + 1), 100);
+                }
+                return;
+            }
+            const grouped = mapPropertiesByCategory(properties);
+            const hasAny = Object.values(grouped).some((items) => items.length > 0);
+            if (!hasAny) {
+                console.log('Premium portföy verisi bulunamadı, demo içerik kullanılmaya devam ediyor.');
+                return;
+            }
+            data.overrideListings(grouped);
+        }
+
+        async function fetchAgentProperties(agentData) {
+            if (!agentData) return [];
+            const slug = agentData.slug || agentData.slug_id || agentData.slugId;
+            const email = agentData.email || agentData.agent_email;
+            let endpointParams = '';
+            if (slug) {
+                endpointParams = `agent_slug=${encodeURIComponent(slug)}`;
+            } else if (email) {
+                endpointParams = `agent_email=${encodeURIComponent(email)}`;
+            } else {
+                return [];
+            }
+            const endpoint = `/properties/?${endpointParams}`;
+            const result = await fetchFromBackend(endpoint);
+            if (!Array.isArray(result)) {
+                return [];
+            }
+            return result;
+        }
+
         // Function to get URL parameters - Global scope'ta tanımlı
         function getUrlParameter(name) {
             name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -354,57 +705,17 @@
             let endpoint;
             const lower = String(agentId).toLowerCase();
 
-            // Backend endpointleri trailing slash olmadan calisiyor
             if (lower.startsWith('agent') || lower.startsWith('agent_')) {
                 endpoint = `/agents/${encodeURIComponent(agentId)}`;
-            }
-            else {
+            } else {
                 endpoint = `/agents/slug/${encodeURIComponent(agentId)}`;
             }
-            // --- DEĞİŞİKLİK BİTTİ ---
 
-            // Local test modu - URL'de local=true parametresi varsa localhost kullan
-            const urlParams = new URLSearchParams(window.location.search);
-            const isLocalTest = urlParams.get('local') === 'true';
-            
-            const isProd = window.location.hostname.includes('vercel.app') || window.location.hostname.endsWith('metraap.com');
-            let apiUrl;
-            
-            if (isLocalTest) {
-                // Local test modu
-                apiUrl = `http://localhost:8000${endpoint}`;
-            } else {
-                // Normal prod/local mantığı
-                apiUrl = isProd
-                    ? `https://metra-ai-monorepo-production.up.railway.app${endpoint}`
-                    : `http://localhost:8000${endpoint}`;
-                
-                // HTTPS kontrolü - Eğer sayfa HTTPS ile yüklenmişse API'yi da HTTPS yap
-                if (window.location.protocol === 'https:' && apiUrl.startsWith('http://')) {
-                    apiUrl = apiUrl.replace('http://', 'https://');
-                }
+            const result = await fetchFromBackend(endpoint);
+            if (!result) {
+                console.warn('Agent verisi alınamadı.');
             }
-            
-            console.log('API URL:', apiUrl, 'isProd:', isProd, 'hostname:', window.location.hostname);
-
-            try {
-                // Cache busting için timestamp ekle
-                const cacheBuster = new Date().getTime();
-                let finalUrl = apiUrl.includes('?') ? `${apiUrl}&_t=${cacheBuster}` : `${apiUrl}?_t=${cacheBuster}`;
-                if (finalUrl.startsWith('http://')) {
-                    finalUrl = finalUrl.replace('http://', 'https://');
-                }
-                console.log('Final fetch URL:', finalUrl);
-                
-                const response = await fetch(finalUrl);
-                if (!response.ok) {
-                    throw new Error('Agent not found');
-                }
-                return await response.json();
-            } catch (error) {
-                console.error('Error fetching agent data:', error);
-                return null;
-            }
+            return result;
         }
 
         function getAgentIdFromSubdomain() {
@@ -644,6 +955,7 @@
                 const agentCompany = agent.company || agent.company_name || '';
                 const agentPhone = agent.phone || '';
                 const agentEmail = agent.email || '';
+                const isPremiumAgent = Boolean(agent.is_premium || agent.isPremium);
                 const agentTitle = agent.title || 'Gayrimenkul Uzmanı';
                 const agentDescription = agent.description || `${agentName}, ${agentCity} bölgesinde emlak sektöründe ${agent.experience || 'deneyimli'} bir danışmandır. Müşterilerine en iyi hizmeti sunmayı hedeflemektedir.`;
                 const aboutText = agentDescription;
@@ -731,6 +1043,14 @@
                 const facebookLink = `https://facebook.com/${cleanFacebook}`;
                 console.log('Setting Facebook link from agent data:', facebookLink);
                 populateElement('facebook_link', facebookLink, 'href');
+            }
+
+            if (isPremiumAgent) {
+                fetchAgentProperties(agent).then((properties) => {
+                    if (Array.isArray(properties) && properties.length) {
+                        applyPortfolioData(properties);
+                    }
+                });
             }
 
             }
