@@ -1,12 +1,20 @@
 {
   "rewrites": [
     {
+      "source": "/dashboard",
+      "destination": "/dashboard/index.html"
+    },
+    {
+      "source": "/dashboard/(.*)",
+      "destination": "/dashboard/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/landing/main.html",
       "has": [
         {
           "type": "host",
-          "value": "(?!(metraap.com|www.metraap.com)$).*metraap.com"
+          "value": "(?!(metraap.com|www.metraap.com|metraai.xyz|www.metraai.xyz)$).*(metraap.com|metraai.xyz)"
         }
       ]
     },
