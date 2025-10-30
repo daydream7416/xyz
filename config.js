@@ -5,12 +5,14 @@ window.API_CONFIG = {
         const isLocalhost = window.location.hostname === 'localhost' || 
                            window.location.hostname === '127.0.0.1' ||
                            window.location.hostname === '';
-        
+
         if (isLocalhost) {
             return 'http://localhost:8000/api/agent/register';
         } else {
             // Use Railway backend URL for production
-            return 'https://metra-ai-monorepo-production.up.railway.app/api/agent/register';
+            const runtimeOverride = window.__METRA_API_BASE_URL || window.localStorage?.getItem('METRA_API_BASE_URL');
+            const baseUrl = runtimeOverride || 'https://capable-beauty.up.railway.app';
+            return `${baseUrl.replace(/\/$/, '')}/api/agent/register`;
         }
     }
 };

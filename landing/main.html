@@ -545,13 +545,21 @@
         function buildApiUrl(endpoint) {
             const urlParams = new URLSearchParams(window.location.search);
             const isLocalTest = urlParams.get('local') === 'true';
-            const isProd = window.location.hostname.includes('vercel.app') || window.location.hostname.endsWith('metraap.com');
+            const host = window.location.hostname || '';
+            const isHosted = host.includes('vercel.app') || host.endsWith('metraap.com') || host.endsWith('metraai.xyz');
 
             let baseUrl;
+            const runtimeOverride = window.__METRA_API_BASE_URL || window.localStorage?.getItem('METRA_API_BASE_URL');
             if (isLocalTest) {
                 baseUrl = 'http://localhost:8000';
             } else {
-                baseUrl = isProd ? 'https://metra-ai-monorepo-production.up.railway.app' : 'http://localhost:8000';
+                if (runtimeOverride) {
+                    baseUrl = runtimeOverride;
+                } else if (isHosted) {
+                    baseUrl = 'https://capable-beauty.up.railway.app';
+                } else {
+                    baseUrl = 'http://localhost:8000';
+                }
             }
 
             if (window.location.protocol === 'https:' && baseUrl.startsWith('http://') && !baseUrl.includes('localhost') && !baseUrl.includes('127.0.0.1')) {
