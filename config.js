@@ -11,7 +11,7 @@ window.API_CONFIG = {
         } else {
             // Use Railway backend URL for production
             const runtimeOverride = window.__METRA_API_BASE_URL || window.localStorage?.getItem('METRA_API_BASE_URL');
-            const baseUrl = runtimeOverride || 'https://capable-beauty.up.railway.app';
+            const baseUrl = runtimeOverride || 'https://xyz-production-404d.up.railway.app';
             return `${baseUrl.replace(/\/$/, '')}/api/agent/register`;
         }
     }

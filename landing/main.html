@@ -408,20 +408,7 @@
                                     </article>
                                 </template>
                             </div>
-                            <div class="flex flex-col gap-4 rounded-xl border border-dashed border-primary bg-primary/5 p-6">
-                                <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-foreground-light dark:text-foreground-dark">Danışman Paneli ile İlanlarınızı Yönetin</h3>
-                                        <p class="text-sm text-subtle-light dark:text-subtle-dark">Her emlakçı kendine özel şifreyle giriş yaparak ilan ekleyebilir, fiyat ve görselleri güncelleyebilir.</p>
-                                    </div>
-                                    <div class="flex flex-wrap gap-2">
-                                        <a href="/login" class="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white transition hover:bg-primary/90">Giriş Yap</a>
-                                        <a href="/dashboard" class="inline-flex items-center justify-center rounded-lg border border-primary px-5 py-2 text-sm font-semibold text-primary transition hover:bg-primary hover:text-white">İlan Ekle</a>
-                                    </div>
-                                </div>
-                                <p class="text-xs text-subtle-light dark:text-subtle-dark">Giriş yetkileri her danışmana özel tanımlanır; sisteme kayıtlı broker yalnızca kendi portföyünü görüntüler ve düzenler.</p>
                             </div>
-                        </div>
                     </section>
 
                     <section id="about">
@@ -541,6 +528,11 @@
 
     <script>
         const PORTFOLIO_FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1080&auto=format&fit=crop';
+        const PORTFOLIO_CATEGORY_IMAGES = {
+            arsa: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1080&auto=format&fit=crop',
+            isyeri: 'https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=1080&auto=format&fit=crop',
+            daire: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1080&auto=format&fit=crop'
+        };
 
         function buildApiUrl(endpoint) {
             const urlParams = new URLSearchParams(window.location.search);
@@ -556,7 +548,7 @@
                 if (runtimeOverride) {
                     baseUrl = runtimeOverride;
                 } else if (isHosted) {
-                    baseUrl = 'https://capable-beauty.up.railway.app';
+                    baseUrl = 'https://xyz-production-404d.up.railway.app';
                 } else {
                     baseUrl = 'http://localhost:8000';
                 }
@@ -646,12 +638,14 @@
                 const category = (item.category || '').toLowerCase();
                 const target = grouped[category] ? category : 'arsa';
                 const specs = Array.isArray(item.specs) ? item.specs : [];
+                const fallbackImage = PORTFOLIO_CATEGORY_IMAGES[target] || PORTFOLIO_FALLBACK_IMAGE;
+                const normalizedImage = item.image_url || item.image || fallbackImage;
                 grouped[target].push({
                     title: item.title || 'Gayrimenkul',
                     status: normalizeStatus(item.status),
                     price: item.price || '',
                     location: item.location || '',
-                    image: item.image_url || PORTFOLIO_FALLBACK_IMAGE,
+                    image: normalizedImage,
                     tagline: item.tagline || '',
                     specs,
                     detailsUrl: item.details_url || '#',
