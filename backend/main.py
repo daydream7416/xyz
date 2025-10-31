@@ -277,14 +277,25 @@ app = FastAPI()
 app.state.active_sessions = ACTIVE_SESSIONS
 
 # Configure CORS middleware - EN ÖNEMLİ: Endpoint'lerden önce tanımlanmalı
+ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+    "http://127.0.0.1:8080",
+    "http://localhost:3000",
+    "https://metraai.xyz",
+    "https://www.metraai.xyz",
+    "https://metraap.com",
+    "https://www.metraap.com",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080", "http://127.0.0.1:8080", "*"],  # Local frontend için izin ver
+    allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=r"https://([a-z0-9-]+\.)?(metraai\.xyz|metraap\.com)$",
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
-    expose_headers=["*"],  # Tüm header'ları expose et
-    max_age=3600,  # Preflight cache süresi
+    expose_headers=["*"],
+    max_age=3600,
 )
 
 @app.get("/")
